@@ -11,4 +11,10 @@ public class Category: NSObject {
     var type: String?
     var color: UIColor?
     var image: UIImage?
+
+    init(type: String?, color: UIColor?, image: UIImage?) {
+        self.type = type
+        self.color = color
+        self.image = image
+    }
 }

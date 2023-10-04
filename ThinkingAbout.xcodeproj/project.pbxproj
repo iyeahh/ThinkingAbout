@@ -61,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				76E856D02ACBF6D1009433D6 /* Main.storyboard */,
+				76E856E12ACC00C4009433D6 /* ListCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -68,7 +69,6 @@
 		764ACAC92ACD220A002C7082 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				76E856E12ACC00C4009433D6 /* ListCollectionViewCell.swift */,
 				76E856CE2ACBF6D1009433D6 /* ListViewController.swift */,
 			);
 			path = Controllers;

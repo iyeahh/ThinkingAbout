@@ -9,7 +9,20 @@ import UIKit
 
 class ListCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var backView: UIView!
+
     @IBOutlet weak var categoryImageView: UIImageView!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var numberOfTaskLabel: UILabel!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        configureUI()
+    }
+
+    func configureUI() {
+        backView.layer.masksToBounds = true
+        backView.layer.cornerRadius = 10
+    }
+
 }
