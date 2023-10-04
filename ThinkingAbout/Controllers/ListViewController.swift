@@ -11,6 +11,9 @@ final class ListViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
+    @IBOutlet weak var addButton: UIButton!
+
+
     let flowLayout = UICollectionViewFlowLayout()
 
     var categoryArray: [Category] = []
@@ -19,13 +22,21 @@ final class ListViewController: UIViewController {
         super.viewDidLoad()
         setupCollecionView()
         setupCategoryArray()
-        collectionView.backgroundColor = #colorLiteral(red: 0.9568627451, green: 0.9450980392, blue: 0.9137254902, alpha: 1)
+        setupAddButton()
+    }
 
+    func setupAddButton() {
+        addButton.backgroundColor = #colorLiteral(red: 0.4078431373, green: 0.5607843137, blue: 0.2588235294, alpha: 1)
+        addButton.setTitle("", for: .normal)
+        addButton.tintColor = #colorLiteral(red: 0.9568627451, green: 0.9450980392, blue: 0.9137254902, alpha: 1)
+        addButton.clipsToBounds = true
+        addButton.layer.cornerRadius = addButton.frame.width / 2
     }
 
     func setupCollecionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.backgroundColor = #colorLiteral(red: 0.9568627451, green: 0.9450980392, blue: 0.9137254902, alpha: 1)
 
         let inset: CGFloat = 20.0 // 원하는 안쪽 여백 크기
         collectionView.contentInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
