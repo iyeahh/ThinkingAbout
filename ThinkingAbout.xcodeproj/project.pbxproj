@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		764ACABF2ACD20CF002C7082 /* MemoData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764ACABB2ACD20CF002C7082 /* MemoData+CoreDataClass.swift */; };
+		764ACAC02ACD20CF002C7082 /* MemoData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764ACABC2ACD20CF002C7082 /* MemoData+CoreDataProperties.swift */; };
+		764ACAC52ACD2170002C7082 /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764ACAC32ACD2170002C7082 /* Category+CoreDataClass.swift */; };
+		764ACAC62ACD2170002C7082 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764ACAC42ACD2170002C7082 /* Category+CoreDataProperties.swift */; };
 		76E856CB2ACBF6D1009433D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E856CA2ACBF6D1009433D6 /* AppDelegate.swift */; };
 		76E856CD2ACBF6D1009433D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E856CC2ACBF6D1009433D6 /* SceneDelegate.swift */; };
 		76E856CF2ACBF6D1009433D6 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E856CE2ACBF6D1009433D6 /* ListViewController.swift */; };
@@ -18,6 +22,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		764ACABB2ACD20CF002C7082 /* MemoData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemoData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		764ACABC2ACD20CF002C7082 /* MemoData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemoData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		764ACAC32ACD2170002C7082 /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = "<group>"; };
+		764ACAC42ACD2170002C7082 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		76E856C72ACBF6D1009433D6 /* ThinkingAbout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThinkingAbout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76E856CA2ACBF6D1009433D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76E856CC2ACBF6D1009433D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +52,10 @@
 		76E856BE2ACBF6D1009433D6 = {
 			isa = PBXGroup;
 			children = (
+				764ACAC32ACD2170002C7082 /* Category+CoreDataClass.swift */,
+				764ACAC42ACD2170002C7082 /* Category+CoreDataProperties.swift */,
+				764ACABB2ACD20CF002C7082 /* MemoData+CoreDataClass.swift */,
+				764ACABC2ACD20CF002C7082 /* MemoData+CoreDataProperties.swift */,
 				76E856C92ACBF6D1009433D6 /* ThinkingAbout */,
 				76E856C82ACBF6D1009433D6 /* Products */,
 			);
@@ -145,8 +157,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				76E856CF2ACBF6D1009433D6 /* ListViewController.swift in Sources */,
+				764ACAC62ACD2170002C7082 /* Category+CoreDataProperties.swift in Sources */,
+				764ACAC52ACD2170002C7082 /* Category+CoreDataClass.swift in Sources */,
 				76E856E22ACC00C4009433D6 /* ListCollectionViewCell.swift in Sources */,
 				76E856D52ACBF6D1009433D6 /* ThinkingAbout.xcdatamodeld in Sources */,
+				764ACABF2ACD20CF002C7082 /* MemoData+CoreDataClass.swift in Sources */,
+				764ACAC02ACD20CF002C7082 /* MemoData+CoreDataProperties.swift in Sources */,
 				76E856CB2ACBF6D1009433D6 /* AppDelegate.swift in Sources */,
 				76E856CD2ACBF6D1009433D6 /* SceneDelegate.swift in Sources */,
 			);
