@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Category {
+public class Category: NSObject {
     var type: String?
     var color: UIColor?
     var image: UIImage?
