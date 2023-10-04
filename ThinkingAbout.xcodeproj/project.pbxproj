@@ -49,13 +49,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		764ACAC72ACD21FC002C7082 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				764ACABB2ACD20CF002C7082 /* MemoData+CoreDataClass.swift */,
+				764ACABC2ACD20CF002C7082 /* MemoData+CoreDataProperties.swift */,
+				764ACAC32ACD2170002C7082 /* Category+CoreDataClass.swift */,
+				764ACAC42ACD2170002C7082 /* Category+CoreDataProperties.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		764ACAC82ACD2203002C7082 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				76E856D02ACBF6D1009433D6 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		764ACAC92ACD220A002C7082 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				76E856E12ACC00C4009433D6 /* ListCollectionViewCell.swift */,
+				76E856CE2ACBF6D1009433D6 /* ListViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		76E856BE2ACBF6D1009433D6 = {
 			isa = PBXGroup;
 			children = (
-				764ACAC32ACD2170002C7082 /* Category+CoreDataClass.swift */,
-				764ACAC42ACD2170002C7082 /* Category+CoreDataProperties.swift */,
-				764ACABB2ACD20CF002C7082 /* MemoData+CoreDataClass.swift */,
-				764ACABC2ACD20CF002C7082 /* MemoData+CoreDataProperties.swift */,
 				76E856C92ACBF6D1009433D6 /* ThinkingAbout */,
 				76E856C82ACBF6D1009433D6 /* Products */,
 			);
@@ -74,9 +98,9 @@
 			children = (
 				76E856CA2ACBF6D1009433D6 /* AppDelegate.swift */,
 				76E856CC2ACBF6D1009433D6 /* SceneDelegate.swift */,
-				76E856CE2ACBF6D1009433D6 /* ListViewController.swift */,
-				76E856E12ACC00C4009433D6 /* ListCollectionViewCell.swift */,
-				76E856D02ACBF6D1009433D6 /* Main.storyboard */,
+				764ACAC72ACD21FC002C7082 /* Models */,
+				764ACAC82ACD2203002C7082 /* Views */,
+				764ACAC92ACD220A002C7082 /* Controllers */,
 				76E856D62ACBF6D2009433D6 /* Assets.xcassets */,
 				76E856D82ACBF6D2009433D6 /* LaunchScreen.storyboard */,
 				76E856DB2ACBF6D2009433D6 /* Info.plist */,
