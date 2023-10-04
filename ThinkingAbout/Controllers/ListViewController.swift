@@ -56,6 +56,9 @@ final class ListViewController: UIViewController {
     }
 
     @IBAction func addButtonTapped(_ sender: UIButton) {
+        if let newMemoVC = storyboard?.instantiateViewController(withIdentifier: "toNewMemoVC") as? NewMemoViewController {
+            self.navigationController?.show(newMemoVC, sender: nil)
+        }
     }
 
     func setupCategoryArray() {
