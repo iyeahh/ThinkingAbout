@@ -256,6 +256,7 @@
                         <outlet property="categoryPicker" destination="Gsd-XH-YiV" id="Nl4-Qh-p5e"/>
                         <outlet property="dateImageView" destination="u9R-EL-rJ0" id="NBo-Ks-lty"/>
                         <outlet property="datePicker" destination="jkD-MA-fGZ" id="8fu-3p-IKk"/>
+                        <outlet property="finishButton" destination="sjS-Kw-UD5" id="gKb-Wy-zbR"/>
                         <outlet property="memoTextView" destination="dq8-Bm-0x0" id="MtP-gU-AbZ"/>
                     </connections>
                 </viewController>
@@ -347,13 +348,14 @@
                             <constraint firstItem="K65-dE-FDT" firstAttribute="bottom" secondItem="2Ev-as-1Gl" secondAttribute="bottom" id="sVC-ef-8A9"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="WY6-G4-w53"/>
                     <connections>
                         <outlet property="tableView" destination="2Ev-as-1Gl" id="Qt7-wJ-Mk4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LOs-Mi-rVo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1736.6412213740457" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="4161.0687022900765" y="3.5211267605633805"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9O3-mN-V27">

@@ -33,12 +33,12 @@ class CategoryCell: UITableViewCell {
 
     func setupBackView() {
         backView.clipsToBounds = true
-        backView.layer.cornerRadius = 0
+        backView.layer.cornerRadius = 10
         backView.backgroundColor = #colorLiteral(red: 0.9568627451, green: 0.9450980392, blue: 0.9137254902, alpha: 1)
     }
 
     func setupDateLabel() {
-        dateLabel.font = UIFont.systemFont(ofSize: 15)
+        dateLabel.font = UIFont.systemFont(ofSize: 10)
         dateLabel.textAlignment = .center
         dateLabel.textColor = #colorLiteral(red: 0.4078431373, green: 0.5607843137, blue: 0.2588235294, alpha: 1)
     }

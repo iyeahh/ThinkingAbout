@@ -16,10 +16,13 @@ class CategoryViewController: UIViewController {
 
     var memoData: MemoData?
 
+    var navibarTitle = ""
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupNaviBar()
+        title = navibarTitle
     }
 
     func setupNaviBar() {
@@ -44,6 +47,7 @@ extension CategoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as? CategoryCell {
 
+            cell.selectionStyle = .none
             let memoData = memoDataManager.getMemoListFromCoreData()
             cell.memoData = memoData[indexPath.row]
 
@@ -56,5 +60,12 @@ extension CategoryViewController: UITableViewDataSource {
 extension CategoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let newMemoVC = storyboard?.instantiateViewController(withIdentifier: "toNewMemoVC") as? NewMemoViewController {
+            newMemoVC.memoData = memoDataManager.getMemoListFromCoreData()[indexPath.row]
+            self.navigationController?.pushViewController(newMemoVC, animated: true)
+        }
     }
 }

@@ -62,7 +62,7 @@ final class ListViewController: UIViewController {
 
     @IBAction func addButtonTapped(_ sender: UIButton) {
         if let newMemoVC = storyboard?.instantiateViewController(withIdentifier: "toNewMemoVC") as? NewMemoViewController {
-            self.navigationController?.show(newMemoVC, sender: nil)
+            self.navigationController?.pushViewController(newMemoVC, animated: true)
         }
     }
 
@@ -104,16 +104,8 @@ extension ListViewController: UICollectionViewDataSource {
 extension ListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let categoryVC = storyboard?.instantiateViewController(withIdentifier: "toCategoryVC") as? CategoryViewController {
-            self.navigationController?.show(categoryVC, sender: nil)
-        }
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toCategoryVC" {
-            let categoryVC = segue.destination as! CategoryViewController
-
-            guard let indexPath = sender as? IndexPath else { return }
-            categoryVC.memoData = memoDataManager.getMemoListFromCoreData()[indexPath.row]
+            categoryVC.navibarTitle = categoryArray[indexPath.row].type ?? ""
+            self.navigationController?.pushViewController(categoryVC, animated: true)
         }
     }
 }
