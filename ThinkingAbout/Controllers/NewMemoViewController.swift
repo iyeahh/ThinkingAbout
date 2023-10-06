@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewMemoViewController: UIViewController {
+class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var memoTextView: UITextView!
     @IBOutlet weak var dateImageView: UIImageView!
@@ -15,6 +15,10 @@ class NewMemoViewController: UIViewController {
 
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var categoryPicker: UIPickerView!
+
+    let memoDataManager = MemoDataManager.shared
+
+    let category = ["업무", "음악", "여행", "공부", "일상", "취미", "쇼핑"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,22 +67,28 @@ class NewMemoViewController: UIViewController {
     }
 
     @IBAction func finishButtonTapped(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+        let memoText = memoTextView.text
+        let date = datePicker.date
+//        func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//            let category = category[row]
+//            }
+//        }
+
+        memoDataManager.saveMemoData(memoText: memoText, date: date, category: Category(type: "업무", color: #colorLiteral(red: 0.9921761155, green: 0.7328807712, blue: 0.4789910913, alpha: 1), image: UIImage(systemName: "text.book.closed"))) {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 
-}
-
-extension NewMemoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 7
+        return category.count
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return ["카테고리", "업무", "음악", "여행", "공부", "일상", "취미", "쇼핑"][row]
+        return category[row]
     }
 
 }

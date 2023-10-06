@@ -2,7 +2,7 @@
 //  Category.swift
 //  ThinkingAbout
 //
-//  Created by Bora Yang on 2023/10/04.
+//  Created by Bora Yang on 2023/10/06.
 //
 
 import UIKit

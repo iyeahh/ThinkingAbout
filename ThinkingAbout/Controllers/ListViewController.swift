@@ -10,9 +10,9 @@ import UIKit
 final class ListViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-
     @IBOutlet weak var addButton: UIButton!
 
+    let memoDataManager = MemoDataManager.shared
 
     let flowLayout = UICollectionViewFlowLayout()
 
@@ -23,6 +23,11 @@ final class ListViewController: UIViewController {
         setupCollecionView()
         setupCategoryArray()
         setupAddButton()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView.reloadData()
     }
 
     func setupAddButton() {
@@ -82,12 +87,13 @@ extension ListViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as? ListCollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ListCell", for: indexPath) as? ListCell {
             let category = categoryArray[indexPath.row]
             cell.categoryImageView.image = category.image
             cell.categoryImageView.tintColor = category.color
             cell.categoryLabel.text = category.type
             cell.numberOfTaskLabel.text = "0개의 생각"
+
             return cell
         }
 
@@ -96,6 +102,19 @@ extension ListViewController: UICollectionViewDataSource {
 }
 
 extension ListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let categoryVC = storyboard?.instantiateViewController(withIdentifier: "toCategoryVC") as? CategoryViewController {
+            self.navigationController?.show(categoryVC, sender: nil)
+        }
+    }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toCategoryVC" {
+            let categoryVC = segue.destination as! CategoryViewController
+
+            guard let indexPath = sender as? IndexPath else { return }
+            categoryVC.memoData = memoDataManager.getMemoListFromCoreData()[indexPath.row]
+        }
+    }
 }
 

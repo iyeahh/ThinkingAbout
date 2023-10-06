@@ -20,6 +20,13 @@ extension MemoData {
     @NSManaged public var date: Date?
     @NSManaged public var category: Category?
 
+    var dateString: String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd"
+        guard let date = self.date else { return  "" }
+        let dateString = dateFormatter.string(from: date)
+        return dateString
+    }
 }
 
 extension MemoData : Identifiable {

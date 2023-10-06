@@ -1,5 +1,5 @@
 //
-//  ListCollectionViewCell.swift
+//  ListCell.swift
 //  ThinkingAbout
 //
 //  Created by Bora Yang on 2023/10/03.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ListCollectionViewCell: UICollectionViewCell {
+class ListCell: UICollectionViewCell {
 
     @IBOutlet weak var backView: UIView!
 
@@ -24,5 +24,4 @@ class ListCollectionViewCell: UICollectionViewCell {
         backView.layer.masksToBounds = true
         backView.layer.cornerRadius = 10
     }
-
 }
