@@ -209,22 +209,6 @@
             </objects>
             <point key="canvasLocation" x="1742.7480916030534" y="734.50704225352115"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="eGp-IG-7RK">
-            <objects>
-                <viewController id="eRd-Tt-wqW" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8gr-su-1Zu">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="q1H-qp-dNq"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="CWS-ba-U7Q"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZzQ-bn-Sdr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1744" y="1467"/>
-        </scene>
         <!--New Memo View Controller-->
         <scene sceneID="xgi-gw-fFR">
             <objects>
@@ -494,7 +478,6 @@
                     <connections>
                         <segue destination="rFo-4V-Dnx" kind="relationship" relationship="viewControllers" id="yGA-Js-HLB"/>
                         <segue destination="mmW-Em-e4e" kind="relationship" relationship="viewControllers" id="uds-7u-mVw"/>
-                        <segue destination="lQK-Y8-RHh" kind="relationship" relationship="viewControllers" id="yhI-o9-BfN"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Xf-sz-cTr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -522,30 +505,8 @@
             </objects>
             <point key="canvasLocation" x="818" y="735"/>
         </scene>
-        <!--Calender-->
-        <scene sceneID="fmO-Ai-Ojd">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lQK-Y8-RHh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Calender" image="calendar" catalog="system" id="GKP-TC-N4f"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="WbB-GK-tID">
-                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <navigationBarAppearance key="standardAppearance"/>
-                        <navigationBarAppearance key="scrollEdgeAppearance"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="eRd-Tt-wqW" kind="relationship" relationship="rootViewController" id="6j1-rB-JUp"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HbP-7d-diE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="818" y="1467"/>
-        </scene>
     </scenes>
     <resources>
-        <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="checklist" catalog="system" width="128" height="107"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="plus" catalog="system" width="128" height="113"/>

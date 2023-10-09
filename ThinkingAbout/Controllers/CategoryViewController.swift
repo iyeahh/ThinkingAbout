@@ -24,6 +24,11 @@ class CategoryViewController: UIViewController {
         title = navibarTitle
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+
     func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -34,15 +39,20 @@ class CategoryViewController: UIViewController {
 
 extension CategoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return memoDataManager.getMemoListFromCoreData().count
+        let currentCategory = memoDataManager.getMemoListFromCoreData().filter { data in
+            data.category?.type == navibarTitle
+        }
+        return currentCategory.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as? CategoryCell {
 
             cell.selectionStyle = .none
-            let memoData = memoDataManager.getMemoListFromCoreData()
-            cell.memoData = memoData[indexPath.row]
+            let currentCategory = memoDataManager.getMemoListFromCoreData().filter { data in
+                data.category?.type == navibarTitle
+            }
+            cell.memoData = currentCategory[indexPath.row]
 
             return cell
         }
@@ -58,6 +68,7 @@ extension CategoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let newMemoVC = storyboard?.instantiateViewController(withIdentifier: "toNewMemoVC") as? NewMemoViewController {
             newMemoVC.memoData = memoDataManager.getMemoListFromCoreData()[indexPath.row]
+//            newMemoVC.categoryPickerValue = indexPath.last
             self.navigationController?.pushViewController(newMemoVC, animated: true)
         }
     }
