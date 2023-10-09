@@ -1,14 +1,13 @@
 //
-//  CategoryViewController.swift
+//  TodayViewController.swift
 //  ThinkingAbout
 //
-//  Created by Bora Yang on 2023/10/06.
+//  Created by Bora Yang on 2023/10/09.
 //
 
 import UIKit
-import CoreData
 
-class CategoryViewController: UIViewController {
+class TodayViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -16,12 +15,27 @@ class CategoryViewController: UIViewController {
 
     var memoData: MemoData?
 
-    var navibarTitle = ""
+    var todayDateString: String? {
+        let today = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd"
+        let dateString = dateFormatter.string(from: today)
+        return dateString
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        title = navibarTitle
+        setupNaviBar()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+
+    func setupNaviBar() {
+        navigationItem.title = "Today's thinking"
     }
 
     func setupTableView() {
@@ -32,17 +46,25 @@ class CategoryViewController: UIViewController {
     }
 }
 
-extension CategoryViewController: UITableViewDataSource {
+extension TodayViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return memoDataManager.getMemoListFromCoreData().count
+
+        let todayDataArray = memoDataManager.getMemoListFromCoreData().filter { data in
+            data.dateString == todayDateString
+        }
+
+        return todayDataArray.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as? CategoryCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "TodayCell", for: indexPath) as? TodayCell {
 
+            let todayDataArray = memoDataManager.getMemoListFromCoreData().filter { data in
+                data.dateString == todayDateString
+            }
+
+            cell.memoData = todayDataArray[indexPath.row]
             cell.selectionStyle = .none
-            let memoData = memoDataManager.getMemoListFromCoreData()
-            cell.memoData = memoData[indexPath.row]
 
             return cell
         }
@@ -50,7 +72,7 @@ extension CategoryViewController: UITableViewDataSource {
     }
 }
 
-extension CategoryViewController: UITableViewDelegate {
+extension TodayViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
