@@ -15,6 +15,8 @@ class TodayViewController: UIViewController {
 
     var memoData: MemoData?
 
+    var category: String = "모아보기"
+
     var todayDateString: String? {
         let today = Date()
         let dateFormatter = DateFormatter()
@@ -64,6 +66,11 @@ extension TodayViewController: UITableViewDataSource {
             }
 
             cell.memoData = todayDataArray[indexPath.row]
+
+            if let categoryType = cell.memoData?.category?.type {
+                category = categoryType
+            }
+            
             cell.selectionStyle = .none
 
             return cell
@@ -79,6 +86,8 @@ extension TodayViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let newMemoVC = storyboard?.instantiateViewController(withIdentifier: "toNewMemoVC") as? NewMemoViewController {
+            print(category)
+            newMemoVC.categoryPickerValue = category
             newMemoVC.memoData = memoDataManager.getMemoListFromCoreData()[indexPath.row]
             self.navigationController?.pushViewController(newMemoVC, animated: true)
         }

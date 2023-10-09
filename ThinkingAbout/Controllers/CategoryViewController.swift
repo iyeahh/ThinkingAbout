@@ -39,21 +39,29 @@ class CategoryViewController: UIViewController {
 
 extension CategoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let currentCategory = memoDataManager.getMemoListFromCoreData().filter { data in
-            data.category?.type == navibarTitle
+        if navibarTitle == "모아보기" {
+            return memoDataManager.getMemoListFromCoreData().count
+        } else {
+            let currentCategory = memoDataManager.getMemoListFromCoreData().filter { data in
+                data.category?.type == navibarTitle
+            }
+            return currentCategory.count
         }
-        return currentCategory.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as? CategoryCell {
 
             cell.selectionStyle = .none
-            let currentCategory = memoDataManager.getMemoListFromCoreData().filter { data in
-                data.category?.type == navibarTitle
-            }
-            cell.memoData = currentCategory[indexPath.row]
 
+            if navibarTitle == "모아보기" {
+                cell.memoData = memoDataManager.getMemoListFromCoreData()[indexPath.row]
+            } else {
+                let currentCategory = memoDataManager.getMemoListFromCoreData().filter { data in
+                    data.category?.type == navibarTitle
+                }
+                cell.memoData = currentCategory[indexPath.row]
+            }
             return cell
         }
         return UITableViewCell()

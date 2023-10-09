@@ -93,11 +93,15 @@ extension ListViewController: UICollectionViewDataSource {
             cell.categoryImageView.tintColor = category.color
             cell.categoryLabel.text = category.type
 
-            let currentCategory = memoDataManager.getMemoListFromCoreData().filter { data in
-                data.category?.type == cell.categoryLabel.text
+            if cell.categoryLabel.text == "모아보기" {
+                cell.numberOfTaskLabel.text = "\(memoDataManager.getMemoListFromCoreData().count)개의 생각"
+            } else {
+                let currentCategory = memoDataManager.getMemoListFromCoreData().filter { data in
+                    data.category?.type == cell.categoryLabel.text
+                }
+                cell.numberOfTaskLabel.text = "\(currentCategory.count)개의 생각"
             }
-            cell.numberOfTaskLabel.text = "\(currentCategory.count)개의 생각"
-
+            
             return cell
         }
 

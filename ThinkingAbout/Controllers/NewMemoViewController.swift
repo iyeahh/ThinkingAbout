@@ -61,8 +61,8 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         datePicker.clipsToBounds = true
         datePicker.layer.cornerRadius = 10
 
-        let value = category.firstIndex(of: categoryPickerValue)
-        categoryPicker.selectRow(value!, inComponent: 0, animated: false)
+        guard let value = category.firstIndex(of: categoryPickerValue) else { return }
+        categoryPicker.selectRow(value, inComponent: 0, animated: false)
     }
 
     func setupCategoryPicker() {
