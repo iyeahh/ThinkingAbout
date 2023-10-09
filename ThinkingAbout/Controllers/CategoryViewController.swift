@@ -67,8 +67,8 @@ extension CategoryViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let newMemoVC = storyboard?.instantiateViewController(withIdentifier: "toNewMemoVC") as? NewMemoViewController {
+            newMemoVC.categoryPickerValue = navibarTitle
             newMemoVC.memoData = memoDataManager.getMemoListFromCoreData()[indexPath.row]
-//            newMemoVC.categoryPickerValue = indexPath.last
             self.navigationController?.pushViewController(newMemoVC, animated: true)
         }
     }

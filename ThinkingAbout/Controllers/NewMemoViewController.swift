@@ -23,7 +23,7 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
     var currentCategory: Category?
 
-//    var categoryPickerValue: Int?
+    var categoryPickerValue: String = "모아보기"
 
     let category = ["모아보기", "업무", "음악", "여행", "공부", "일상", "취미", "쇼핑"]
 
@@ -61,9 +61,8 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         datePicker.clipsToBounds = true
         datePicker.layer.cornerRadius = 10
 
-//        if let value = categoryPickerValue {
-//            categoryPicker.selectRow(value, inComponent: 0, animated: false)
-//        }
+        let value = category.firstIndex(of: categoryPickerValue)
+        categoryPicker.selectRow(value!, inComponent: 0, animated: false)
     }
 
     func setupCategoryPicker() {
@@ -91,6 +90,7 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
     @IBAction func finishButtonTapped(_ sender: UIButton) {
         if let memoData = self.memoData {
+
             memoData.memoText = memoTextView.text
             memoData.date = datePicker.date
             memoData.category = currentCategory
