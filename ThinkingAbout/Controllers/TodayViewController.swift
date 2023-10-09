@@ -92,4 +92,12 @@ extension TodayViewController: UITableViewDelegate {
             self.navigationController?.pushViewController(newMemoVC, animated: true)
         }
     }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            memoDataManager.deleteMemo(data: memoDataManager.getMemoListFromCoreData()[indexPath.row]) { }
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.reloadData()
+        }
+    }
 }
