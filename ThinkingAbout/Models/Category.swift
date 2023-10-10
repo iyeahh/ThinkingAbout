@@ -7,7 +7,13 @@
 
 import UIKit
 
-public class Category: NSObject {
+public class Category: NSObject, NSSecureCoding {
+    public static var supportsSecureCoding: Bool = true
+
+    public func encode(with coder: NSCoder) { }
+
+    public required init?(coder: NSCoder) { }
+
     var type: String?
     var color: UIColor?
     var image: UIImage?

@@ -53,7 +53,6 @@ final class MemoDataManager {
                     memoData.date = date
                     memoData.category = category
 
-                    //appDelegate?.saveContext() // 앱델리게이트의 메서드로 해도됨
                     if context.hasChanges {
                         do {
                             try context.save()
@@ -85,7 +84,6 @@ final class MemoDataManager {
                     if let targetMemo = fetchedMemoList.first {
                         context.delete(targetMemo)
 
-                        //appDelegate?.saveContext() // 앱델리게이트의 메서드로 해도됨
                         if context.hasChanges {
                             do {
                                 try context.save()
@@ -121,7 +119,6 @@ final class MemoDataManager {
                     if var targetMemo = fetchedMemoList.first {
                         targetMemo = newMemoData
 
-                        //appDelegate?.saveContext() // 앱델리게이트의 메서드로 해도됨
                         if context.hasChanges {
                             do {
                                 try context.save()
