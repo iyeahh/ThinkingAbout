@@ -34,6 +34,7 @@ class CategoryViewController: UIViewController {
         tableView.delegate = self
         tableView.separatorStyle = .singleLine
         tableView.backgroundColor = #colorLiteral(red: 0.97647053, green: 0.97647053, blue: 0.97647053, alpha: 1)
+        tableView.rowHeight = 120
     }
 }
 
