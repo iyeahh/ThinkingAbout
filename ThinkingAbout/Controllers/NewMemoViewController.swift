@@ -58,7 +58,7 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
     func setupDatePicker() {
         datePicker.datePickerMode = .date
-        datePicker.backgroundColor = #colorLiteral(red: 0.9568627451, green: 0.9450980392, blue: 0.9137254902, alpha: 1)
+        datePicker.backgroundColor = #colorLiteral(red: 0.97647053, green: 0.97647053, blue: 0.97647053, alpha: 1)
         datePicker.clipsToBounds = true
         datePicker.layer.cornerRadius = 10
 
@@ -69,7 +69,7 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     func setupCategoryPicker() {
         categoryPicker.dataSource = self
         categoryPicker.delegate = self
-        categoryPicker.backgroundColor = #colorLiteral(red: 0.9568627451, green: 0.9450980392, blue: 0.9137254902, alpha: 1)
+        categoryPicker.backgroundColor = #colorLiteral(red: 0.97647053, green: 0.97647053, blue: 0.97647053, alpha: 1)
         categoryPicker.clipsToBounds = true
         categoryPicker.layer.cornerRadius = 10
     }
@@ -81,8 +81,8 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     func setupImage() {
         dateImageView.image = UIImage(systemName: "calendar")
         categoryImageView.image = UIImage(systemName: "tray.full")
-        dateImageView.tintColor = #colorLiteral(red: 0.4078431373, green: 0.5607843137, blue: 0.2588235294, alpha: 1)
-        categoryImageView.tintColor = #colorLiteral(red: 0.4078431373, green: 0.5607843137, blue: 0.2588235294, alpha: 1)
+        dateImageView.tintColor = #colorLiteral(red: 0.2988972366, green: 0.4551405311, blue: 0.8419892788, alpha: 1)
+        categoryImageView.tintColor = #colorLiteral(red: 0.2988972366, green: 0.4551405311, blue: 0.8419892788, alpha: 1)
     }
 
     @IBAction func exitButtonTapped(_ sender: UIBarButtonItem) {

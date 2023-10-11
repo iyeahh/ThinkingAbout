@@ -31,9 +31,9 @@ final class ListViewController: UIViewController {
     }
 
     func setupAddButton() {
-        addButton.backgroundColor = #colorLiteral(red: 0.4078431373, green: 0.5607843137, blue: 0.2588235294, alpha: 1)
+        addButton.backgroundColor = #colorLiteral(red: 0.3382760584, green: 0.5265126824, blue: 1, alpha: 1)
         addButton.setTitle("", for: .normal)
-        addButton.tintColor = #colorLiteral(red: 0.9568627451, green: 0.9450980392, blue: 0.9137254902, alpha: 1)
+        addButton.tintColor = #colorLiteral(red: 0.97647053, green: 0.97647053, blue: 0.97647053, alpha: 1)
         addButton.clipsToBounds = true
         addButton.layer.cornerRadius = addButton.frame.width / 2
     }
@@ -41,7 +41,7 @@ final class ListViewController: UIViewController {
     func setupCollecionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = #colorLiteral(red: 0.9568627451, green: 0.9450980392, blue: 0.9137254902, alpha: 1)
+        collectionView.backgroundColor = #colorLiteral(red: 0.97647053, green: 0.97647053, blue: 0.97647053, alpha: 1)
 
         let inset: CGFloat = 20.0 // 원하는 안쪽 여백 크기
         collectionView.contentInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)

@@ -15,7 +15,7 @@ class TodayViewController: UIViewController {
 
     var memoData: MemoData?
 
-    var category: String = "모아보기"
+    var category: String = "업무"
 
     var todayDateString: String? {
         let today = Date()
@@ -44,7 +44,7 @@ class TodayViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .singleLine
-        tableView.backgroundColor = #colorLiteral(red: 0.9568627451, green: 0.9450980392, blue: 0.9137254902, alpha: 1)
+        tableView.backgroundColor = #colorLiteral(red: 0.97647053, green: 0.97647053, blue: 0.97647053, alpha: 1)
     }
 }
 
@@ -70,7 +70,6 @@ extension TodayViewController: UITableViewDataSource {
             if let categoryType = cell.memoData?.category?.type {
                 category = categoryType
             }
-            
             cell.selectionStyle = .none
 
             return cell
