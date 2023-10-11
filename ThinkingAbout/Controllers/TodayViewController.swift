@@ -95,7 +95,10 @@ extension TodayViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            memoDataManager.deleteMemo(data: memoDataManager.getMemoListFromCoreData()[indexPath.row]) { }
+            let todayDataArray = memoDataManager.getMemoListFromCoreData().filter { data in
+                data.dateString == todayDateString
+            }
+            memoDataManager.deleteMemo(data: todayDataArray[indexPath.row]) { }
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.reloadData()
         }

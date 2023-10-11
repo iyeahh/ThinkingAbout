@@ -57,10 +57,10 @@ extension CategoryViewController: UITableViewDataSource {
             if navibarTitle == "모아보기" {
                 cell.memoData = memoDataManager.getMemoListFromCoreData()[indexPath.row]
             } else {
-                let currentCategory = memoDataManager.getMemoListFromCoreData().filter { data in
+                let currentCategoryArray = memoDataManager.getMemoListFromCoreData().filter { data in
                     data.category?.type == navibarTitle
                 }
-                cell.memoData = currentCategory[indexPath.row]
+                cell.memoData = currentCategoryArray[indexPath.row]
             }
             return cell
         }
@@ -83,7 +83,10 @@ extension CategoryViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            memoDataManager.deleteMemo(data: memoDataManager.getMemoListFromCoreData()[indexPath.row]) { }
+            let currentCategoryArray = memoDataManager.getMemoListFromCoreData().filter { data in
+                data.category?.type == navibarTitle
+            }
+            memoDataManager.deleteMemo(data: currentCategoryArray[indexPath.row]) { }
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.reloadData()
         }
