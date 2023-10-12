@@ -34,7 +34,7 @@ class CategoryViewController: UIViewController {
         tableView.delegate = self
         tableView.separatorStyle = .singleLine
         tableView.backgroundColor = #colorLiteral(red: 0.97647053, green: 0.97647053, blue: 0.97647053, alpha: 1)
-        tableView.rowHeight = 120
+        tableView.rowHeight = 100
     }
 }
 
@@ -84,10 +84,15 @@ extension CategoryViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let currentCategoryArray = memoDataManager.getMemoListFromCoreData().filter { data in
-                data.category?.type == navibarTitle
+            if navibarTitle == "모아보기" {
+                let deleteCell = memoDataManager.getMemoListFromCoreData()[indexPath.row]
+                memoDataManager.deleteMemo(data: deleteCell) { }
+            } else {
+                let currentCategoryArray = memoDataManager.getMemoListFromCoreData().filter { data in
+                    data.category?.type == navibarTitle
+                }
+                memoDataManager.deleteMemo(data: currentCategoryArray[indexPath.row]) { }
             }
-            memoDataManager.deleteMemo(data: currentCategoryArray[indexPath.row]) { }
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.reloadData()
         }
