@@ -459,6 +459,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.33333334329999997" green="0.45098042490000001" blue="0.8156862855" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBar>
                     <connections>
                         <segue destination="rFo-4V-Dnx" kind="relationship" relationship="viewControllers" id="yGA-Js-HLB"/>
@@ -473,7 +474,7 @@
         <scene sceneID="ZnA-7S-wac">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mmW-Em-e4e" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Today" image="checkmark" catalog="system" id="p4p-LS-tJI"/>
+                    <tabBarItem key="tabBarItem" title="Today" image="checklist" catalog="system" id="p4p-LS-tJI"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="1G5-rk-mLf">
                         <rect key="frame" x="0.0" y="59" width="393" height="96"/>
@@ -492,7 +493,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="checkmark" catalog="system" width="128" height="114"/>
+        <image name="checklist" catalog="system" width="128" height="107"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
