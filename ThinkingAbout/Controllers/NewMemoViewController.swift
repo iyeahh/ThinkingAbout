@@ -47,7 +47,7 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             memoTextView.text = text
             datePicker.date = date
 
-            finishButton.setTitle("수정완료", for: .normal)
+            finishButton.setTitle("수정 완료", for: .normal)
             memoTextView.becomeFirstResponder()
         } else {
             self.title = "새로운 메모 작성"
