@@ -35,7 +35,6 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         setupDatePicker()
         configureUI()
         memoTextView.delegate = self
-        memoTextView.becomeFirstResponder()
     }
 
     func configureUI() {
