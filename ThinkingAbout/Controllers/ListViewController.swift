@@ -23,6 +23,7 @@ final class ListViewController: UIViewController {
         setupCollecionView()
         setupCategoryArray()
         setupAddButton()
+        memoDataManager.fetchFromCoreData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -94,9 +95,9 @@ extension ListViewController: UICollectionViewDataSource {
             cell.categoryLabel.text = category.type
 
             if cell.categoryLabel.text == "모아보기" {
-                cell.numberOfTaskLabel.text = "\(memoDataManager.getMemoListFromCoreData().count)개의 생각"
+                cell.numberOfTaskLabel.text = "\(memoDataManager.memoList.count)개의 생각"
             } else {
-                let currentCategory = memoDataManager.getMemoListFromCoreData().filter { data in
+                let currentCategory = memoDataManager.memoList.filter { data in
                     data.category?.type == cell.categoryLabel.text
                 }
                 cell.numberOfTaskLabel.text = "\(currentCategory.count)개의 생각"

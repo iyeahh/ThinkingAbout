@@ -15,125 +15,86 @@ final class MemoDataManager {
     static let shared = MemoDataManager()
     private init() {}
 
-    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "ThinkingAbout")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
 
-    lazy var context = appDelegate?.persistentContainer.viewContext
+    var mainContext: NSManagedObjectContext {
+        return persistentContainer.viewContext
+    }
 
     let modelName: String = "MemoData"
 
+    var memoList: [MemoData] = []
+
     // MARK: - [Read] 코어데이터에 저장된 데이터 모두 읽어오기
-    func getMemoListFromCoreData() -> [MemoData] {
-        var memoList: [MemoData] = []
+    func fetchFromCoreData() {
+        let request = NSFetchRequest<NSManagedObject>(entityName: self.modelName)
+        let dateOrder = NSSortDescriptor(key: "date", ascending: false)
+        request.sortDescriptors = [dateOrder]
 
-        if let context = context {
-            let request = NSFetchRequest<NSManagedObject>(entityName: self.modelName)
-            let dateOrder = NSSortDescriptor(key: "date", ascending: false)
-            request.sortDescriptors = [dateOrder]
-
-            do {
-                if let fetchedToDoList = try context.fetch(request) as? [MemoData] {
-                    memoList = fetchedToDoList
-                }
-            } catch {
-                print("가져오는 것 실패")
+        do {
+            guard let fetchedMemoList = try mainContext.fetch(request) as? [MemoData] else {
+                print("Fetch 실패")
+                return
             }
+            memoList = fetchedMemoList
+        } catch {
+            print("가져오는 것 실패")
         }
 
-        return memoList
     }
 
     // MARK: - [Create] 코어데이터에 데이터 생성하기
-    func saveMemoData(memoText: String?, date: Date, category: Category, completion: @escaping () -> Void) {
-        if let context = context {
-            if let entity = NSEntityDescription.entity(forEntityName: self.modelName, in: context) {
-                if let memoData = NSManagedObject(entity: entity, insertInto: context) as? MemoData {
+    func createMemoData(memoText: String?, date: Date, category: Category) {
+        let newMemoData = MemoData(context: mainContext)
 
-                    // MARK: - ToDoData에 실제 데이터 할당 ⭐️
-                    memoData.memoText = memoText
-                    memoData.date = date
-                    memoData.category = category
+        // MARK: - ToDoData에 실제 데이터 할당 ⭐️
+        newMemoData.memoText = memoText
+        newMemoData.date = date
+        newMemoData.category = category
 
-                    if context.hasChanges {
-                        do {
-                            try context.save()
-                            completion()
-                        } catch {
-                            print(error)
-                            completion()
-                        }
-                    }
-                }
-            }
-        }
-        completion()
+        memoList.insert(newMemoData, at: 0)
+        saveContext()
+
     }
 
     // MARK: - [Delete] 코어데이터에서 데이터 삭제하기 (일치하는 데이터 찾아서 ===> 삭제)
-    func deleteMemo(data: MemoData, completion: @escaping () -> Void) {
-        guard let date = data.date else {
-            completion()
+    func deleteMemo(data: MemoData?, at index: Int) {
+        guard let deleteMemo = data else {
+            print("삭제 실패")
             return
         }
 
-        if let context = context {
-            let request = NSFetchRequest<NSManagedObject>(entityName: self.modelName)
-            request.predicate = NSPredicate(format: "date = %@", date as CVarArg)
-
-            do {
-                if let fetchedMemoList = try context.fetch(request) as? [MemoData] {
-                    if let targetMemo = fetchedMemoList.first {
-                        context.delete(targetMemo)
-
-                        if context.hasChanges {
-                            do {
-                                try context.save()
-                                completion()
-                            } catch {
-                                print(error)
-                                completion()
-                            }
-                        }
-                    }
-                }
-                completion()
-            } catch {
-                print("지우는 것 실패")
-                completion()
-            }
-        }
+        memoList.remove(at: index)
+        mainContext.delete(deleteMemo)
+        saveContext()
     }
 
     // MARK: - [Update] 코어데이터에서 데이터 수정하기 (일치하는 데이터 찾아서 ===> 수정)
-    func updateMemo(newMemoData: MemoData, completion: @escaping () -> Void) {
-        guard let date = newMemoData.date else {
-            completion()
+    func updateMemo(updatingMemoData: MemoData?, at index: Int) {
+        guard let memodata = updatingMemoData else {
+            print("업데이트 실패")
             return
         }
+        
+        saveContext()
+    }
 
-        if let context = context {
-            let request = NSFetchRequest<NSManagedObject>(entityName: self.modelName)
-            request.predicate = NSPredicate(format: "date = %@", date as CVarArg)
-
+    func saveContext () {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
             do {
-                if let fetchedMemoList = try context.fetch(request) as? [MemoData] {
-                    if var targetMemo = fetchedMemoList.first {
-                        targetMemo = newMemoData
-
-                        if context.hasChanges {
-                            do {
-                                try context.save()
-                                completion()
-                            } catch {
-                                print(error)
-                                completion()
-                            }
-                        }
-                    }
-                }
-                completion()
+                try context.save()
             } catch {
-                print("지우는 것 실패")
-                completion()
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
     }

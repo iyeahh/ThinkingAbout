@@ -41,9 +41,9 @@ class CategoryViewController: UIViewController {
 extension CategoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if navibarTitle == "모아보기" {
-            return memoDataManager.getMemoListFromCoreData().count
+            return memoDataManager.memoList.count
         } else {
-            let currentCategory = memoDataManager.getMemoListFromCoreData().filter { data in
+            let currentCategory = memoDataManager.memoList.filter { data in
                 data.category?.type == navibarTitle
             }
             return currentCategory.count
@@ -56,9 +56,9 @@ extension CategoryViewController: UITableViewDataSource {
             cell.selectionStyle = .none
 
             if navibarTitle == "모아보기" {
-                cell.memoData = memoDataManager.getMemoListFromCoreData()[indexPath.row]
+                cell.memoData = memoDataManager.memoList[indexPath.row]
             } else {
-                let currentCategoryArray = memoDataManager.getMemoListFromCoreData().filter { data in
+                let currentCategoryArray = memoDataManager.memoList.filter { data in
                     data.category?.type == navibarTitle
                 }
                 cell.memoData = currentCategoryArray[indexPath.row]
@@ -74,7 +74,7 @@ extension CategoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let newMemoVC = storyboard?.instantiateViewController(withIdentifier: "toNewMemoVC") as? NewMemoViewController {
             newMemoVC.categoryPickerValue = navibarTitle
-            newMemoVC.memoData = memoDataManager.getMemoListFromCoreData()[indexPath.row]
+            newMemoVC.memoData = memoDataManager.memoList[indexPath.row]
             self.navigationController?.pushViewController(newMemoVC, animated: true)
         }
     }
@@ -82,13 +82,13 @@ extension CategoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             if navibarTitle == "모아보기" {
-                let deleteCell = memoDataManager.getMemoListFromCoreData()[indexPath.row]
-                memoDataManager.deleteMemo(data: deleteCell) { }
+                let deleteCell = memoDataManager.memoList[indexPath.row]
+                memoDataManager.deleteMemo(data: deleteCell, at: indexPath.row)
             } else {
-                let currentCategoryArray = memoDataManager.getMemoListFromCoreData().filter { data in
+                let currentCategoryArray = memoDataManager.memoList.filter { data in
                     data.category?.type == navibarTitle
                 }
-                memoDataManager.deleteMemo(data: currentCategoryArray[indexPath.row]) { }
+                memoDataManager.deleteMemo(data: currentCategoryArray[indexPath.row], at: indexPath.row)
             }
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.reloadData()

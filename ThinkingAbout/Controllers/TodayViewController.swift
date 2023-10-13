@@ -52,7 +52,7 @@ class TodayViewController: UIViewController {
 extension TodayViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        let todayDataArray = memoDataManager.getMemoListFromCoreData().filter { data in
+        let todayDataArray = memoDataManager.memoList.filter { data in
             data.dateString == todayDateString
         }
 
@@ -62,7 +62,7 @@ extension TodayViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "TodayCell", for: indexPath) as? TodayCell {
 
-            let todayDataArray = memoDataManager.getMemoListFromCoreData().filter { data in
+            let todayDataArray = memoDataManager.memoList.filter { data in
                 data.dateString == todayDateString
             }
 
@@ -88,17 +88,17 @@ extension TodayViewController: UITableViewDelegate {
         if let newMemoVC = storyboard?.instantiateViewController(withIdentifier: "toNewMemoVC") as? NewMemoViewController {
             print(category)
             newMemoVC.categoryPickerValue = category
-            newMemoVC.memoData = memoDataManager.getMemoListFromCoreData()[indexPath.row]
+            newMemoVC.memoData = memoDataManager.memoList[indexPath.row]
             self.navigationController?.pushViewController(newMemoVC, animated: true)
         }
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let todayDataArray = memoDataManager.getMemoListFromCoreData().filter { data in
+            let todayDataArray = memoDataManager.memoList.filter { data in
                 data.dateString == todayDateString
             }
-            memoDataManager.deleteMemo(data: todayDataArray[indexPath.row]) { }
+            memoDataManager.deleteMemo(data: todayDataArray[indexPath.row], at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.reloadData()
         }

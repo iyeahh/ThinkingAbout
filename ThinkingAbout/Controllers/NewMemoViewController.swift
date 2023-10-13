@@ -21,6 +21,8 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
     var memoData: MemoData?
 
+    var indexOfMemo: Int = 0
+
     var currentCategory: Category = Category(type: "업무", color: #colorLiteral(red: 0.9921761155, green: 0.7328807712, blue: 0.4789910913, alpha: 1), image: UIImage(systemName: "text.book.closed"))
 
     var categoryPickerValue: String = "업무"
@@ -47,7 +49,6 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             datePicker.date = date
 
             finishButton.setTitle("수정 완료", for: .normal)
-            memoTextView.becomeFirstResponder()
         } else {
             self.title = "새로운 메모 작성"
             memoTextView.text = "텍스트를 여기에 입력하세요."
@@ -76,7 +77,7 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     func setupNaviBar() {
         navigationItem.hidesBackButton = true
     }
-    
+
     func setupImage() {
         dateImageView.image = UIImage(systemName: "calendar")
         categoryImageView.image = UIImage(systemName: "tray.full")
@@ -95,16 +96,16 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             memoData.date = datePicker.date
             memoData.category = currentCategory
 
-            memoDataManager.updateMemo(newMemoData: memoData) {
-                self.navigationController?.popViewController(animated: true)
-            }
+            memoDataManager.updateMemo(updatingMemoData: memoData, at: indexOfMemo)
+            self.navigationController?.popViewController(animated: true)
+
         } else {
             let memoText = memoTextView.text
             let date = datePicker.date
 
-            memoDataManager.saveMemoData(memoText: memoText, date: date, category: currentCategory) {
-                self.navigationController?.popViewController(animated: true)
-            }
+            memoDataManager.createMemoData(memoText: memoText, date: date, category: currentCategory)
+            self.navigationController?.popViewController(animated: true)
+
         }
     }
 
