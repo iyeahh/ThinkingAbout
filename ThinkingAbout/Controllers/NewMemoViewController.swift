@@ -37,6 +37,17 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         setupDatePicker()
         configureUI()
         memoTextView.delegate = self
+        checkingButtonValid()
+    }
+
+    func checkingButtonValid() {
+        if memoTextView.text.isEmpty || memoTextView.text == "텍스트를 여기에 입력하세요." {
+            finishButton.isEnabled = false
+            finishButton.backgroundColor = UIColor.lightGray
+        } else {
+            finishButton.isEnabled = true
+            finishButton.backgroundColor = #colorLiteral(red: 0.2988972366, green: 0.4551405311, blue: 0.8419892788, alpha: 1)
+        }
     }
 
     func configureUI() {
@@ -72,7 +83,7 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         categoryPicker.backgroundColor = #colorLiteral(red: 0.97647053, green: 0.97647053, blue: 0.97647053, alpha: 1)
         categoryPicker.clipsToBounds = true
         categoryPicker.layer.cornerRadius = 10
-    }
+    }	
 
     func setupNaviBar() {
         navigationItem.hidesBackButton = true
@@ -90,6 +101,10 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
 
     @IBAction func finishButtonTapped(_ sender: UIButton) {
+
+//        guard memoTextView.text != "텍스트를 입력하세요." || !memoTextView.text.isEmpty else {
+//
+//        }
         if let memoData = self.memoData {
 
             memoData.memoText = memoTextView.text
@@ -149,6 +164,7 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
 extension NewMemoViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
+        checkingButtonValid()
         if textView.text == "텍스트를 여기에 입력하세요." {
             textView.text = nil
             textView.textColor = .black
@@ -156,9 +172,14 @@ extension NewMemoViewController: UITextViewDelegate {
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {
+        checkingButtonValid()
         if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             textView.text = "텍스트를 여기에 입력하세요."
             textView.textColor = .lightGray
         }
+    }
+
+    func textViewDidChange(_ textView: UITextView) {
+        checkingButtonValid()
     }
 }
