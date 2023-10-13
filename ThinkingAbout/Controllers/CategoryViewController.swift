@@ -22,6 +22,7 @@ class CategoryViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         title = navibarTitle
+        navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.2988972366, green: 0.4551405311, blue: 0.8419892788, alpha: 1)
     }
 
     override func viewWillAppear(_ animated: Bool) {
