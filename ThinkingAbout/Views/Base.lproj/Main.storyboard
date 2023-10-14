@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Thinking About-->
+        <!--Thinking About 🧐-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ListViewController" customModule="ThinkingAbout" customModuleProvider="target" sceneMemberID="viewController">
@@ -129,7 +129,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uQb-hq-UsN" secondAttribute="trailing" id="V01-zv-LbN"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Thinking About" id="h0p-7L-Jmz"/>
+                    <navigationItem key="navigationItem" title="Thinking About 🧐" id="h0p-7L-Jmz"/>
                     <connections>
                         <outlet property="addButton" destination="6eE-Vq-vnD" id="B9h-hp-Tgp"/>
                         <outlet property="collectionView" destination="uQb-hq-UsN" id="keD-NS-a9I"/>
@@ -433,7 +433,7 @@
                     <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="PZO-8R-9mj"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="lEr-BA-Pah">
-                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="104.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <navigationBarAppearance key="standardAppearance"/>
                         <navigationBarAppearance key="scrollEdgeAppearance"/>
