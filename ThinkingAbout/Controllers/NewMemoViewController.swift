@@ -12,10 +12,7 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBOutlet weak var buttonBottomConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var memoTextView: UITextView!
-    @IBOutlet weak var dateImageView: UIImageView!
-    @IBOutlet weak var categoryImageView: UIImageView!
     @IBOutlet weak var finishButton: UIButton!
-
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var categoryPicker: UIPickerView!
 
@@ -33,7 +30,6 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupImage()
         setupNaviBar()
         setupCategoryPicker()
         setupDatePicker()
@@ -80,8 +76,6 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             self.view.layoutIfNeeded()
         }
     }
-
-
 
     func checkingButtonValid() {
         if memoTextView.text.isEmpty || memoTextView.text == "텍스트를 여기에 입력하세요." {
@@ -132,13 +126,6 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         navigationItem.hidesBackButton = true
     }
 
-    func setupImage() {
-        dateImageView.image = UIImage(systemName: "calendar")
-        categoryImageView.image = UIImage(systemName: "tray.full")
-        dateImageView.tintColor = #colorLiteral(red: 0.2988972366, green: 0.4551405311, blue: 0.8419892788, alpha: 1)
-        categoryImageView.tintColor = #colorLiteral(red: 0.2988972366, green: 0.4551405311, blue: 0.8419892788, alpha: 1)
-    }
-
     @IBAction func exitButtonTapped(_ sender: UIBarButtonItem) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -163,6 +150,17 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         }
     }
 
+    func makeAttributedString(image: UIImage, text: String) -> NSAttributedString {
+        let attachment = NSTextAttachment()
+        attachment.image = image
+        let imageString = NSAttributedString(attachment: attachment)
+
+        let attributedString = NSMutableAttributedString(attributedString: imageString)
+        attributedString.append(NSAttributedString(string: " " + text))
+
+        return attributedString
+    }
+
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -171,8 +169,16 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         return category.count
     }
 
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return category[row]
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        return [
+            makeAttributedString(image: UIImage(systemName: "text.book.closed")!, text: "업무"),
+            makeAttributedString(image: UIImage(systemName: "beats.headphones")!, text: "음악"),
+            makeAttributedString(image: UIImage(systemName: "airplane")!, text: "여행"),
+            makeAttributedString(image: UIImage(systemName: "pencil")!, text: "공부"),
+            makeAttributedString(image: UIImage(systemName: "house")!, text: "일상"),
+            makeAttributedString(image: UIImage(systemName: "paintpalette")!, text: "취미"),
+            makeAttributedString(image: UIImage(systemName: "cart")!, text: "쇼핑")
+        ][row]
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
