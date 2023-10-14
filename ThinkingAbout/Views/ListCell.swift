@@ -17,10 +17,10 @@ class ListCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        configureUI()
+        setupUI()
     }
 
-    func configureUI() {
+    func setupUI() {
         backView.layer.masksToBounds = true
         backView.layer.cornerRadius = 10
     }

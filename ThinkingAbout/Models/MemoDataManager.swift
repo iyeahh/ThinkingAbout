@@ -8,8 +8,6 @@
 import CoreData
 import UIKit
 
-//MARK: - Memo 관리하는 매니저 (코어데이터 관리)
-
 final class MemoDataManager {
 
     static let shared = MemoDataManager()
@@ -33,7 +31,6 @@ final class MemoDataManager {
 
     var memoList: [MemoData] = []
 
-    // MARK: - [Read] 코어데이터에 저장된 데이터 모두 읽어오기
     func fetchFromCoreData() {
         let request = NSFetchRequest<NSManagedObject>(entityName: self.modelName)
         let dateOrder = NSSortDescriptor(key: "date", ascending: false)
@@ -48,38 +45,32 @@ final class MemoDataManager {
         } catch {
             print("가져오는 것 실패")
         }
-
     }
 
-    // MARK: - [Create] 코어데이터에 데이터 생성하기
-    func createMemoData(memoText: String?, date: Date, category: Category) {
+    func createMemo(text: String?, date: Date, category: Category) {
         let newMemoData = MemoData(context: mainContext)
 
-        // MARK: - ToDoData에 실제 데이터 할당 ⭐️
-        newMemoData.memoText = memoText
+        newMemoData.memoText = text
         newMemoData.date = date
         newMemoData.category = category
 
         memoList.insert(newMemoData, at: 0)
         saveContext()
-
     }
 
-    // MARK: - [Delete] 코어데이터에서 데이터 삭제하기 (일치하는 데이터 찾아서 ===> 삭제)
     func deleteMemo(data: MemoData?, at index: Int) {
-        guard let deleteMemo = data else {
+        guard let deletingMemo = data else {
             print("삭제 실패")
             return
         }
 
         memoList.remove(at: index)
-        mainContext.delete(deleteMemo)
+        mainContext.delete(deletingMemo)
         saveContext()
     }
 
-    // MARK: - [Update] 코어데이터에서 데이터 수정하기 (일치하는 데이터 찾아서 ===> 수정)
-    func updateMemo(updatingMemoData: MemoData?, at index: Int) {
-        guard let memodata = updatingMemoData else {
+    func updateMemo(data: MemoData?, at index: Int) {
+        guard let updatingMemo = data else {
             print("업데이트 실패")
             return
         }
@@ -87,7 +78,7 @@ final class MemoDataManager {
         saveContext()
     }
 
-    func saveContext () {
+    func saveContext() {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {

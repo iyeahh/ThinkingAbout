@@ -15,7 +15,7 @@ class TodayCell: UITableViewCell {
 
     var memoData: MemoData? {
         didSet {
-            configureUIwithData()
+            setupUIwithData()
         }
     }
 
@@ -39,7 +39,7 @@ class TodayCell: UITableViewCell {
         categoryLabel.font = UIFont.systemFont(ofSize: 15, weight: .bold)
     }
 
-    func configureUIwithData() {
+    func setupUIwithData() {
         categoryView.backgroundColor = memoData?.category?.color
         categoryLabel.text = memoData?.category?.type
         memoLabel.text = memoData?.memoText

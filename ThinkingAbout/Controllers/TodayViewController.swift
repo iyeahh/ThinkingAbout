@@ -86,7 +86,6 @@ extension TodayViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let newMemoVC = storyboard?.instantiateViewController(withIdentifier: "toNewMemoVC") as? NewMemoViewController {
-            print(category)
             newMemoVC.categoryPickerValue = category
             newMemoVC.memoData = memoDataManager.memoList[indexPath.row]
             self.navigationController?.pushViewController(newMemoVC, animated: true)

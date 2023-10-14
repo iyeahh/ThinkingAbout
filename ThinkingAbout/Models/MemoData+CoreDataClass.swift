@@ -10,6 +10,4 @@ import Foundation
 import CoreData
 
 @objc(MemoData)
-public class MemoData: NSManagedObject {
-
-}
+public class MemoData: NSManagedObject { }

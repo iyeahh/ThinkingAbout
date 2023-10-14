@@ -29,6 +29,4 @@ extension MemoData {
     }
 }
 
-extension MemoData : Identifiable {
-
-}
+extension MemoData : Identifiable { }

@@ -26,8 +26,6 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
     var categoryPickerValue: String = "업무"
 
-    let category = ["업무", "음악", "여행", "공부", "일상", "취미", "쇼핑"]
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNaviBar()
@@ -70,7 +68,6 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
 
     @objc func keyboardWillHide(_ notification: Notification) {
-        // 키보드가 사라질 때 원래의 레이아웃으로 돌리는 코드
         buttonBottomConstraint.constant = 0
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
@@ -110,8 +107,12 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         datePicker.clipsToBounds = true
         datePicker.layer.cornerRadius = 10
 
-        guard let value = category.firstIndex(of: categoryPickerValue) else { return }
-        categoryPicker.selectRow(value, inComponent: 0, animated: false)
+        guard let value = Category.categoryArray.map({ category in
+            category.type
+        }).firstIndex(of: categoryPickerValue) else {
+            return
+        }
+        categoryPicker.selectRow(value - 1, inComponent: 0, animated: false)
     }
 
     func setupCategoryPicker() {
@@ -137,14 +138,14 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             memoData.date = datePicker.date
             memoData.category = currentCategory
 
-            memoDataManager.updateMemo(updatingMemoData: memoData, at: indexOfMemo)
+            memoDataManager.updateMemo(data: memoData, at: indexOfMemo)
             self.navigationController?.popViewController(animated: true)
 
         } else {
             let memoText = memoTextView.text
             let date = datePicker.date
 
-            memoDataManager.createMemoData(memoText: memoText, date: date, category: currentCategory)
+            memoDataManager.createMemo(text: memoText, date: date, category: currentCategory)
             self.navigationController?.popViewController(animated: true)
 
         }
@@ -166,7 +167,7 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return category.count
+        return Category.categoryArray.count - 1
     }
 
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
@@ -188,21 +189,21 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch row {
         case 0:
-            currentCategory = Category(type: "업무", color: #colorLiteral(red: 0.9921761155, green: 0.7328807712, blue: 0.4789910913, alpha: 1), image: UIImage(systemName: "text.book.closed"))
+            currentCategory = Category.categoryArray[1]
         case 1:
-            currentCategory = Category(type: "음악", color: #colorLiteral(red: 0.9771121144, green: 0.6577736735, blue: 0.6004146934, alpha: 1), image: UIImage(systemName: "beats.headphones"))
+            currentCategory = Category.categoryArray[2]
         case 2:
-            currentCategory = Category(type: "여행", color: #colorLiteral(red: 0.440038383, green: 0.8220494986, blue: 0.5577589869, alpha: 1), image: UIImage(systemName: "airplane"))
+            currentCategory = Category.categoryArray[3]
         case 3:
-            currentCategory = Category(type: "공부", color: #colorLiteral(red: 0.5635170937, green: 0.5420733094, blue: 0.8248844147, alpha: 1), image: UIImage(systemName: "pencil"))
+            currentCategory = Category.categoryArray[4]
         case 4:
-            currentCategory = Category(type: "일상", color: #colorLiteral(red: 0.8769599795, green: 0.5063646436, blue: 0.4531673789, alpha: 1), image: UIImage(systemName: "house"))
+            currentCategory = Category.categoryArray[5]
         case 5:
-            currentCategory = Category(type: "취미", color: #colorLiteral(red: 0.7281604409, green: 0.5113939643, blue: 0.8102740645, alpha: 1), image: UIImage(systemName: "paintpalette"))
+            currentCategory = Category.categoryArray[6]
         case 6:
-            currentCategory = Category(type: "쇼핑", color: #colorLiteral(red: 0.2690466344, green: 0.7030950189, blue: 0.7497351766, alpha: 1), image: UIImage(systemName: "cart"))
+            currentCategory = Category.categoryArray[7]
         default:
-            currentCategory = Category(type: "업무", color: #colorLiteral(red: 0.9921761155, green: 0.7328807712, blue: 0.4789910913, alpha: 1), image: UIImage(systemName: "text.book.closed"))
+            currentCategory = Category.categoryArray[1]
         }
     }
 }

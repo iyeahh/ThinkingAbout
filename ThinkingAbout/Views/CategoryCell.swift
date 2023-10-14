@@ -18,7 +18,7 @@ class CategoryCell: UITableViewCell {
 
     var memoData: MemoData? {
         didSet {
-            configureUIwithData()
+            setupUIwithData()
         }
     }
 
@@ -56,7 +56,7 @@ class CategoryCell: UITableViewCell {
         categoryLabel.font = UIFont.systemFont(ofSize: 15, weight: .bold)
     }
 
-    func configureUIwithData() {
+    func setupUIwithData() {
         dateLabel.text = memoData?.dateString
         categoryView.backgroundColor = memoData?.category?.color
         categoryLabel.text = memoData?.category?.type
