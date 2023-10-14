@@ -332,6 +332,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="buttonBottomConstraint" destination="AeN-Jm-RnD" id="EdH-Zq-gcs"/>
                         <outlet property="categoryImageView" destination="gww-FF-Nom" id="aNd-WN-5L2"/>
                         <outlet property="categoryPicker" destination="Gsd-XH-YiV" id="Nl4-Qh-p5e"/>
                         <outlet property="dateImageView" destination="u9R-EL-rJ0" id="NBo-Ks-lty"/>
@@ -342,7 +343,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JMP-fr-Dq9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1161" y="1126"/>
+            <point key="canvasLocation" x="-1161.0687022900763" y="1125.3521126760563"/>
         </scene>
         <!--Category View Controller-->
         <scene sceneID="dGQ-3y-yju">
@@ -522,7 +523,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

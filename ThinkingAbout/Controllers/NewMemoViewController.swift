@@ -9,6 +9,8 @@ import UIKit
 
 class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    @IBOutlet weak var buttonBottomConstraint: NSLayoutConstraint!
+
     @IBOutlet weak var memoTextView: UITextView!
     @IBOutlet weak var dateImageView: UIImageView!
     @IBOutlet weak var categoryImageView: UIImageView!
@@ -39,6 +41,47 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         memoTextView.delegate = self
         checkingButtonValid()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    @objc func keyboardWillShow(_ notification: Notification) {
+        guard let tabBar = self.tabBarController?.tabBar else {
+            return
+        }
+        let tabBarHeight = tabBar.frame.size.height
+
+        guard let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
+
+        let keyboardHeight = keyboardFrame.size.height
+
+        buttonBottomConstraint.constant = keyboardHeight - tabBarHeight
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    @objc func keyboardWillHide(_ notification: Notification) {
+        // 키보드가 사라질 때 원래의 레이아웃으로 돌리는 코드
+        buttonBottomConstraint.constant = 0
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+
+
 
     func checkingButtonValid() {
         if memoTextView.text.isEmpty || memoTextView.text == "텍스트를 여기에 입력하세요." {
@@ -83,7 +126,7 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         categoryPicker.backgroundColor = #colorLiteral(red: 0.97647053, green: 0.97647053, blue: 0.97647053, alpha: 1)
         categoryPicker.clipsToBounds = true
         categoryPicker.layer.cornerRadius = 10
-    }	
+    }
 
     func setupNaviBar() {
         navigationItem.hidesBackButton = true
@@ -101,10 +144,6 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
 
     @IBAction func finishButtonTapped(_ sender: UIButton) {
-
-//        guard memoTextView.text != "텍스트를 입력하세요." || !memoTextView.text.isEmpty else {
-//
-//        }
         if let memoData = self.memoData {
 
             memoData.memoText = memoTextView.text
