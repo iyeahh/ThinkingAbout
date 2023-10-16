@@ -234,30 +234,30 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dq8-Bm-0x0">
-                                <rect key="frame" x="30" y="109.33333333333331" width="333" height="527.66666666666674"/>
+                                <rect key="frame" x="30" y="109.33333333333334" width="333" height="507.66666666666663"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bLG-0x-qwQ">
-                                <rect key="frame" x="30" y="647" width="333" height="1"/>
+                                <rect key="frame" x="30" y="627" width="333" height="1"/>
                                 <color key="backgroundColor" red="0.33333334329999997" green="0.45098042490000001" blue="0.8156862855" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="9KW-uS-aH2"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="PN9-zc-2mp">
-                                <rect key="frame" x="10" y="658" width="373" height="100"/>
+                                <rect key="frame" x="10" y="638" width="373" height="120"/>
                                 <subviews>
                                     <datePicker contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="jkD-MA-fGZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="258" height="100"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="258" height="120"/>
                                         <color key="backgroundColor" red="0.97647058959999999" green="0.97647058959999999" blue="0.97647058959999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <color key="tintColor" red="0.33333334329999997" green="0.45098042490000001" blue="0.8156862855" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <locale key="locale" localeIdentifier="ko_KR"/>
                                     </datePicker>
                                     <pickerView contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Gsd-XH-YiV">
-                                        <rect key="frame" x="263" y="0.0" width="110" height="100"/>
+                                        <rect key="frame" x="263" y="0.0" width="110" height="120"/>
                                         <color key="backgroundColor" red="0.97647058959999999" green="0.97647058959999999" blue="0.97647058959999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <color key="tintColor" red="0.33333334329999997" green="0.45098042490000001" blue="0.8156862855" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
@@ -266,7 +266,7 @@
                                     </pickerView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="qHY-qr-Art"/>
+                                    <constraint firstAttribute="height" constant="120" id="qHY-qr-Art"/>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sjS-Kw-UD5">
@@ -433,7 +433,7 @@
                     <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="PZO-8R-9mj"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="lEr-BA-Pah">
-                        <rect key="frame" x="0.0" y="59" width="393" height="104.33333333333334"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <navigationBarAppearance key="standardAppearance"/>
                         <navigationBarAppearance key="scrollEdgeAppearance"/>
@@ -474,7 +474,7 @@
                     <tabBarItem key="tabBarItem" title="Today" image="checklist" catalog="system" id="p4p-LS-tJI"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="1G5-rk-mLf">
-                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="104.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <navigationBarAppearance key="standardAppearance"/>
                         <navigationBarAppearance key="scrollEdgeAppearance"/>
