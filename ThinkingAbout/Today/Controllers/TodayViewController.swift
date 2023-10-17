@@ -97,7 +97,7 @@ extension TodayViewController: UITableViewDelegate {
             let todayDataArray = memoDataManager.memoList.filter { data in
                 data.dateString == todayDateString
             }
-            memoDataManager.deleteMemo(data: todayDataArray[indexPath.row], at: indexPath.row)
+            memoDataManager.deleteMemo(_ memo: todayDataArray[indexPath.row], at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.reloadData()
         }

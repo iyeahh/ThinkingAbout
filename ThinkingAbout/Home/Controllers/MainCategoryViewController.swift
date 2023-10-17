@@ -1,5 +1,5 @@
 //
-//  ListViewController.swift
+//  MainCategoryViewController.swift
 //  ThinkingAbout
 //
 //  Created by Bora Yang on 2023/10/03.
@@ -7,20 +7,18 @@
 
 import UIKit
 
-final class ListViewController: UIViewController {
+final class MainCategoryViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var addButton: UIButton!
 
-    let memoDataManager = MemoDataManager.shared
+    private let memoDataManager = MemoDataManager.shared
 
-    let flowLayout = UICollectionViewFlowLayout()
+    private let flowLayout = UICollectionViewFlowLayout()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupCollecionView()
-        setupAddButton()
-        memoDataManager.fetchFromCoreData()
+        setupUI()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -28,7 +26,12 @@ final class ListViewController: UIViewController {
         collectionView.reloadData()
     }
 
-    func setupAddButton() {
+    private func setupUI() {
+        setupCollecionView()
+        setupAddButton()
+    }
+
+    private func setupAddButton() {
         addButton.backgroundColor = #colorLiteral(red: 0.3382760584, green: 0.5265126824, blue: 1, alpha: 1)
         addButton.setTitle("", for: .normal)
         addButton.tintColor = #colorLiteral(red: 0.97647053, green: 0.97647053, blue: 0.97647053, alpha: 1)
@@ -36,7 +39,7 @@ final class ListViewController: UIViewController {
         addButton.layer.cornerRadius = addButton.frame.width / 2
     }
 
-    func setupCollecionView() {
+    private func setupCollecionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = #colorLiteral(red: 0.97647053, green: 0.97647053, blue: 0.97647053, alpha: 1)
@@ -58,21 +61,21 @@ final class ListViewController: UIViewController {
         collectionView.collectionViewLayout = flowLayout
     }
 
-    @IBAction func addButtonTapped(_ sender: UIButton) {
+    @IBAction private func addButtonTapped(_ sender: UIButton) {
         if let newMemoVC = storyboard?.instantiateViewController(withIdentifier: "toNewMemoVC") as? NewMemoViewController {
             self.navigationController?.pushViewController(newMemoVC, animated: true)
         }
     }
 }
 
-extension ListViewController: UICollectionViewDataSource {
+extension MainCategoryViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Category.categoryArray.count
+        return Category.mainCategoryArray.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ListCell", for: indexPath) as? ListCell {
-            let category = Category.categoryArray[indexPath.row]
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ListCell", for: indexPath) as? CategoryListCell {
+            let category = Category.mainCategoryArray[indexPath.row]
             cell.categoryImageView.image = category.image
             cell.categoryImageView.tintColor = category.color
             cell.categoryLabel.text = category.type
@@ -93,10 +96,10 @@ extension ListViewController: UICollectionViewDataSource {
     }
 }
 
-extension ListViewController: UICollectionViewDelegate {
+extension MainCategoryViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let categoryVC = storyboard?.instantiateViewController(withIdentifier: "toCategoryVC") as? CategoryViewController {
-            categoryVC.navibarTitle = Category.categoryArray[indexPath.row].type ?? ""
+            categoryVC.navibarTitle = Category.mainCategoryArray[indexPath.row].type ?? ""
             self.navigationController?.pushViewController(categoryVC, animated: true)
         }
     }

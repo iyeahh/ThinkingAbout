@@ -11,7 +11,9 @@ import UIKit
 final class MemoDataManager {
 
     static let shared = MemoDataManager()
-    private init() {}
+    private init() {
+        fetchMemoList()
+    }
 
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "ThinkingAbout")
@@ -23,15 +25,15 @@ final class MemoDataManager {
         return container
     }()
 
-    var mainContext: NSManagedObjectContext {
+    private var mainContext: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
 
-    let modelName: String = "MemoData"
+    private let modelName: String = "MemoData"
 
     var memoList: [MemoData] = []
 
-    func fetchFromCoreData() {
+    private func fetchMemoList() {
         let request = NSFetchRequest<NSManagedObject>(entityName: self.modelName)
         let dateOrder = NSSortDescriptor(key: "date", ascending: false)
         request.sortDescriptors = [dateOrder]
@@ -58,8 +60,8 @@ final class MemoDataManager {
         saveContext()
     }
 
-    func deleteMemo(data: MemoData?, at index: Int) {
-        guard let deletingMemo = data else {
+    func deleteMemo(_ memo: MemoData?, at index: Int) {
+        guard let deletingMemo = memo else {
             print("삭제 실패")
             return
         }
@@ -69,8 +71,8 @@ final class MemoDataManager {
         saveContext()
     }
 
-    func updateMemo(data: MemoData?, at index: Int) {
-        guard let updatingMemo = data else {
+    func updateMemo(_ memo: MemoData?, at index: Int) {
+        guard let updatingMemo = memo else {
             print("업데이트 실패")
             return
         }

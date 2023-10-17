@@ -12,7 +12,7 @@ class CategoryViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    let memoDataManager = MemoDataManager.shared
+    private let memoDataManager = MemoDataManager.shared
 
     var memoData: MemoData?
 
@@ -20,10 +20,7 @@ class CategoryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
-        title = navibarTitle
-        navigationItem.largeTitleDisplayMode = .never
-        navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.2988972366, green: 0.4551405311, blue: 0.8419892788, alpha: 1)
+        setupUI()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -31,12 +28,23 @@ class CategoryViewController: UIViewController {
         tableView.reloadData()
     }
 
-    func setupTableView() {
+    private func setupUI() {
+        setupTableView()
+        setupNavi()
+    }
+
+    private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .singleLine
         tableView.backgroundColor = #colorLiteral(red: 0.97647053, green: 0.97647053, blue: 0.97647053, alpha: 1)
         tableView.rowHeight = 100
+    }
+
+    private func setupNavi() {
+        title = navibarTitle
+        navigationItem.largeTitleDisplayMode = .never
+        navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.2988972366, green: 0.4551405311, blue: 0.8419892788, alpha: 1)
     }
 }
 
@@ -53,7 +61,7 @@ extension CategoryViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as? CategoryCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as? CategoryDetailCell {
 
             cell.selectionStyle = .none
 
@@ -85,12 +93,12 @@ extension CategoryViewController: UITableViewDelegate {
         if editingStyle == .delete {
             if navibarTitle == "모아보기" {
                 let deleteCell = memoDataManager.memoList[indexPath.row]
-                memoDataManager.deleteMemo(data: deleteCell, at: indexPath.row)
+                memoDataManager.deleteMemo(_ memo: deleteCell, at: indexPath.row)
             } else {
                 let currentCategoryArray = memoDataManager.memoList.filter { data in
                     data.category?.type == navibarTitle
                 }
-                memoDataManager.deleteMemo(data: currentCategoryArray[indexPath.row], at: indexPath.row)
+                memoDataManager.deleteMemo(_ memo: currentCategoryArray[indexPath.row], at: indexPath.row)
             }
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.reloadData()

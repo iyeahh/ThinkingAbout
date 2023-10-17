@@ -16,24 +16,20 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var categoryPicker: UIPickerView!
 
-    let memoDataManager = MemoDataManager.shared
+    private let memoDataManager = MemoDataManager.shared
 
     var memoData: MemoData?
 
     var indexOfMemo: Int = 0
 
-    var currentCategory: Category = Category(type: "업무", color: #colorLiteral(red: 0.9921761155, green: 0.7328807712, blue: 0.4789910913, alpha: 1), image: UIImage(systemName: "text.book.closed"))
+    private var currentCategory: Category = Category(type: "업무", color: .theme.work, image: UIImage(systemName: "text.book.closed"))
 
     var categoryPickerValue: String = "업무"
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNaviBar()
-        setupCategoryPicker()
-        setupDatePicker()
-        configureUI()
+        setupUI()
         memoTextView.delegate = self
-        checkingButtonValid()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -49,7 +45,7 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         NotificationCenter.default.removeObserver(self)
     }
 
-    @objc func keyboardWillShow(_ notification: Notification) {
+    @objc private func keyboardWillShow(_ notification: Notification) {
         guard let tabBar = self.tabBarController?.tabBar else {
             return
         }
@@ -67,24 +63,48 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         }
     }
 
-    @objc func keyboardWillHide(_ notification: Notification) {
+    @objc private func keyboardWillHide(_ notification: Notification) {
         buttonBottomConstraint.constant = 0
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
     }
 
-    func checkingButtonValid() {
-        if memoTextView.text.isEmpty || memoTextView.text == "텍스트를 여기에 입력하세요." {
-            finishButton.isEnabled = false
-            finishButton.backgroundColor = UIColor.lightGray
-        } else {
-            finishButton.isEnabled = true
-            finishButton.backgroundColor = #colorLiteral(red: 0.2988972366, green: 0.4551405311, blue: 0.8419892788, alpha: 1)
-        }
+    private func setupUI() {
+        setupNaviBar()
+        setupCategoryPicker()
+        setupDatePicker()
+        configureUI()
+        checkingButtonValid()
     }
 
-    func configureUI() {
+    private func setupNaviBar() {
+        navigationItem.hidesBackButton = true
+    }
+
+    private func setupCategoryPicker() {
+        categoryPicker.dataSource = self
+        categoryPicker.delegate = self
+        categoryPicker.backgroundColor = #colorLiteral(red: 0.97647053, green: 0.97647053, blue: 0.97647053, alpha: 1)
+        categoryPicker.clipsToBounds = true
+        categoryPicker.layer.cornerRadius = 10
+    }
+
+    private func setupDatePicker() {
+        datePicker.datePickerMode = .date
+        datePicker.backgroundColor = #colorLiteral(red: 0.97647053, green: 0.97647053, blue: 0.97647053, alpha: 1)
+        datePicker.clipsToBounds = true
+        datePicker.layer.cornerRadius = 10
+
+        guard let value = Category.mainCategoryArray.map({ category in
+            category.type
+        }).firstIndex(of: categoryPickerValue) else {
+            return
+        }
+        categoryPicker.selectRow(value - 1, inComponent: 0, animated: false)
+    }
+
+    private func configureUI() {
         if let memoData = self.memoData {
             print(memoData)
             self.title = "메모 수정"
@@ -101,30 +121,14 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         }
     }
 
-    func setupDatePicker() {
-        datePicker.datePickerMode = .date
-        datePicker.backgroundColor = #colorLiteral(red: 0.97647053, green: 0.97647053, blue: 0.97647053, alpha: 1)
-        datePicker.clipsToBounds = true
-        datePicker.layer.cornerRadius = 10
-
-        guard let value = Category.categoryArray.map({ category in
-            category.type
-        }).firstIndex(of: categoryPickerValue) else {
-            return
+    private func checkingButtonValid() {
+        if memoTextView.text.isEmpty || memoTextView.text == "텍스트를 여기에 입력하세요." {
+            finishButton.isEnabled = false
+            finishButton.backgroundColor = UIColor.lightGray
+        } else {
+            finishButton.isEnabled = true
+            finishButton.backgroundColor = #colorLiteral(red: 0.2988972366, green: 0.4551405311, blue: 0.8419892788, alpha: 1)
         }
-        categoryPicker.selectRow(value - 1, inComponent: 0, animated: false)
-    }
-
-    func setupCategoryPicker() {
-        categoryPicker.dataSource = self
-        categoryPicker.delegate = self
-        categoryPicker.backgroundColor = #colorLiteral(red: 0.97647053, green: 0.97647053, blue: 0.97647053, alpha: 1)
-        categoryPicker.clipsToBounds = true
-        categoryPicker.layer.cornerRadius = 10
-    }
-
-    func setupNaviBar() {
-        navigationItem.hidesBackButton = true
     }
 
     @IBAction func exitButtonTapped(_ sender: UIBarButtonItem) {
@@ -138,7 +142,7 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             memoData.date = datePicker.date
             memoData.category = currentCategory
 
-            memoDataManager.updateMemo(data: memoData, at: indexOfMemo)
+            memoDataManager.updateMemo(_ memo: memoData, at: indexOfMemo)
             self.navigationController?.popViewController(animated: true)
 
         } else {
@@ -151,35 +155,17 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         }
     }
 
-    func makeAttributedString(image: UIImage, text: String) -> NSAttributedString {
-        let attachment = NSTextAttachment()
-        attachment.image = image
-        let imageString = NSAttributedString(attachment: attachment)
-
-        let attributedString = NSMutableAttributedString(attributedString: imageString)
-        attributedString.append(NSAttributedString(string: " " + text))
-
-        return attributedString
-    }
-
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return Category.categoryArray.count - 1
+        return Category.subCategoryArray.count
     }
 
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return [
-            makeAttributedString(image: UIImage(systemName: "text.book.closed")!, text: "업무"),
-            makeAttributedString(image: UIImage(systemName: "beats.headphones")!, text: "음악"),
-            makeAttributedString(image: UIImage(systemName: "airplane")!, text: "여행"),
-            makeAttributedString(image: UIImage(systemName: "pencil")!, text: "공부"),
-            makeAttributedString(image: UIImage(systemName: "house")!, text: "일상"),
-            makeAttributedString(image: UIImage(systemName: "paintpalette")!, text: "취미"),
-            makeAttributedString(image: UIImage(systemName: "cart")!, text: "쇼핑")
-        ][row]
+
+        return Category.subCategoryArray.map {$0.makeAttributedString()}[row]
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
@@ -187,24 +173,7 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        switch row {
-        case 0:
-            currentCategory = Category.categoryArray[1]
-        case 1:
-            currentCategory = Category.categoryArray[2]
-        case 2:
-            currentCategory = Category.categoryArray[3]
-        case 3:
-            currentCategory = Category.categoryArray[4]
-        case 4:
-            currentCategory = Category.categoryArray[5]
-        case 5:
-            currentCategory = Category.categoryArray[6]
-        case 6:
-            currentCategory = Category.categoryArray[7]
-        default:
-            currentCategory = Category.categoryArray[1]
-        }
+        currentCategory = Category.subCategoryArray[row]
     }
 }
 

@@ -1,5 +1,5 @@
 //
-//  CategoryCell.swift
+//  CategoryDetailCell.swift
 //  ThinkingAbout
 //
 //  Created by Bora Yang on 2023/10/06.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CategoryCell: UITableViewCell {
+class CategoryDetailCell: UITableViewCell {
 
     @IBOutlet weak var backView: UIImageView!
     @IBOutlet weak var dateLabel: UILabel!
@@ -24,39 +24,43 @@ class CategoryCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupBackView()
-        setupDateLabel()
-        setupCategoryView()
-        setupCategoryLabel()
+        setupUI()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
 
-    func setupBackView() {
+    private func setupUI() {
+        setupBackView()
+        setupDateLabel()
+        setupCategoryView()
+        setupCategoryLabel()
+    }
+
+    private func setupBackView() {
         backView.clipsToBounds = true
         backView.layer.cornerRadius = 10
         backView.backgroundColor = #colorLiteral(red: 0.97647053, green: 0.97647053, blue: 0.97647053, alpha: 1)
     }
 
-    func setupCategoryView() {
-        categoryView.clipsToBounds = true
-        categoryView.layer.cornerRadius = 10
-    }
-
-    func setupDateLabel() {
+    private func setupDateLabel() {
         dateLabel.font = UIFont.systemFont(ofSize: 12, weight: .bold)
         dateLabel.textAlignment = .center
         dateLabel.textColor = #colorLiteral(red: 0.2988972366, green: 0.4551405311, blue: 0.8419892788, alpha: 1)
     }
 
-    func setupCategoryLabel() {
+    private func setupCategoryView() {
+        categoryView.clipsToBounds = true
+        categoryView.layer.cornerRadius = 10
+    }
+
+    private func setupCategoryLabel() {
         categoryLabel.textColor = .white
         categoryLabel.font = UIFont.systemFont(ofSize: 15, weight: .bold)
     }
 
-    func setupUIwithData() {
+    private func setupUIwithData() {
         dateLabel.text = memoData?.dateString
         categoryView.backgroundColor = memoData?.category?.color
         categoryLabel.text = memoData?.category?.type
