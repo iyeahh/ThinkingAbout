@@ -36,6 +36,7 @@ public class Category: NSObject, NSSecureCoding {
     }
 }
 
+// MARK: - 카테고리 배열
 extension Category {
     static let mainCategoryArray: [Category] = [
         Category(type: "모아보기", color: .theme.all, image: .mainIcon.all),

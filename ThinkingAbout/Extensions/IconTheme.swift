@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - 아이콘 이미지 테마
 extension UIImage {
     static let mainIcon = MainIconTheme()
     static let subIcon = SubIconTheme()

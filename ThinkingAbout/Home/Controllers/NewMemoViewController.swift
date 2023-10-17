@@ -8,7 +8,8 @@
 import UIKit
 
 class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-
+    
+    // MARK: - 버튼의 위치를 동적으로 변경하기 위한 제약 연결
     @IBOutlet weak var buttonBottomConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var memoTextView: UITextView!
@@ -142,7 +143,7 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             memoData.date = datePicker.date
             memoData.category = currentCategory
 
-            memoDataManager.updateMemo(_ memo: memoData, at: indexOfMemo)
+            memoDataManager.updateMemo(memoData, at: indexOfMemo)
             self.navigationController?.popViewController(animated: true)
 
         } else {

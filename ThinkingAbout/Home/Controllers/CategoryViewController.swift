@@ -93,12 +93,12 @@ extension CategoryViewController: UITableViewDelegate {
         if editingStyle == .delete {
             if navibarTitle == "모아보기" {
                 let deleteCell = memoDataManager.memoList[indexPath.row]
-                memoDataManager.deleteMemo(_ memo: deleteCell, at: indexPath.row)
+                memoDataManager.deleteMemo(deleteCell, at: indexPath.row)
             } else {
                 let currentCategoryArray = memoDataManager.memoList.filter { data in
                     data.category?.type == navibarTitle
                 }
-                memoDataManager.deleteMemo(_ memo: currentCategoryArray[indexPath.row], at: indexPath.row)
+                memoDataManager.deleteMemo(currentCategoryArray[indexPath.row], at: indexPath.row)
             }
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.reloadData()

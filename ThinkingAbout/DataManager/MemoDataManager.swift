@@ -8,6 +8,7 @@
 import CoreData
 import UIKit
 
+// MARK: - 메모 데이터 관리자
 final class MemoDataManager {
 
     static let shared = MemoDataManager()
@@ -31,6 +32,7 @@ final class MemoDataManager {
 
     private let modelName: String = "MemoData"
 
+    // MARK: - 메모 데이터 배열
     var memoList: [MemoData] = []
 
     private func fetchMemoList() {

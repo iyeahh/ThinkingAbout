@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-
+// MARK: - 메모 코어 데이터
 extension MemoData {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<MemoData> {

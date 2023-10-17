@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - 컬러 테마
 extension UIColor {
     static let theme = ColorTheme()
 }
