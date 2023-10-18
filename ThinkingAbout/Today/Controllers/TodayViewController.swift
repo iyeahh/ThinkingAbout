@@ -44,7 +44,7 @@ class TodayViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .singleLine
-        tableView.backgroundColor = #colorLiteral(red: 0.97647053, green: 0.97647053, blue: 0.97647053, alpha: 1)
+        tableView.backgroundColor = .uITheme.sub
         tableView.rowHeight = 100
     }
 }

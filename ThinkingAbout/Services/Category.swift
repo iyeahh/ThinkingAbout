@@ -39,24 +39,24 @@ public class Category: NSObject, NSSecureCoding {
 // MARK: - 카테고리 배열
 extension Category {
     static let mainCategoryArray: [Category] = [
-        Category(type: "모아보기", color: .theme.all, image: .mainIcon.all),
-        Category(type: "업무", color: .theme.work, image: .mainIcon.work),
-        Category(type: "음악", color: .theme.music, image: .mainIcon.music),
-        Category(type: "여행", color: .theme.travel, image: .mainIcon.travel),
-        Category(type: "공부", color: .theme.study, image: .mainIcon.study),
-        Category(type: "일상", color: .theme.stuff, image: .mainIcon.stuff),
-        Category(type: "취미", color: .theme.hobby, image: .mainIcon.hobby),
-        Category(type: "쇼핑", color: .theme.shopping, image: .mainIcon.shopping),
+        Category(type: "모아보기", color: .categoryTheme.all, image: .mainIcon.all),
+        Category(type: "업무", color: .categoryTheme.work, image: .mainIcon.work),
+        Category(type: "음악", color: .categoryTheme.music, image: .mainIcon.music),
+        Category(type: "여행", color: .categoryTheme.travel, image: .mainIcon.travel),
+        Category(type: "공부", color: .categoryTheme.study, image: .mainIcon.study),
+        Category(type: "일상", color: .categoryTheme.stuff, image: .mainIcon.stuff),
+        Category(type: "취미", color: .categoryTheme.hobby, image: .mainIcon.hobby),
+        Category(type: "쇼핑", color: .categoryTheme.shopping, image: .mainIcon.shopping),
     ]
 
     static let subCategoryArray: [Category] = [
-        Category(type: "업무", color: .theme.work, image: .subIcon.work),
-        Category(type: "음악", color: .theme.music, image: .subIcon.music),
-        Category(type: "여행", color: .theme.travel, image: .subIcon.travel),
-        Category(type: "공부", color: .theme.study, image: .subIcon.study),
-        Category(type: "일상", color: .theme.stuff, image: .subIcon.stuff),
-        Category(type: "취미", color: .theme.hobby, image: .subIcon.hobby),
-        Category(type: "쇼핑", color: .theme.shopping, image: .subIcon.shopping),
+        Category(type: "업무", color: .categoryTheme.work, image: .subIcon.work),
+        Category(type: "음악", color: .categoryTheme.music, image: .subIcon.music),
+        Category(type: "여행", color: .categoryTheme.travel, image: .subIcon.travel),
+        Category(type: "공부", color: .categoryTheme.study, image: .subIcon.study),
+        Category(type: "일상", color: .categoryTheme.stuff, image: .subIcon.stuff),
+        Category(type: "취미", color: .categoryTheme.hobby, image: .subIcon.hobby),
+        Category(type: "쇼핑", color: .categoryTheme.shopping, image: .subIcon.shopping),
     ]
 
     func makeAttributedString() -> NSAttributedString {

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		76027F6C2ADE3D6E00C6F9EC /* ColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76027F6B2ADE3D6E00C6F9EC /* ColorTheme.swift */; };
+		76027F6C2ADE3D6E00C6F9EC /* CategoryTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76027F6B2ADE3D6E00C6F9EC /* CategoryTheme.swift */; };
 		76027F722ADE47F500C6F9EC /* IconTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76027F712ADE47F500C6F9EC /* IconTheme.swift */; };
 		764ACABF2ACD20CF002C7082 /* MemoData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764ACABB2ACD20CF002C7082 /* MemoData+CoreDataClass.swift */; };
 		764ACAC02ACD20CF002C7082 /* MemoData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764ACABC2ACD20CF002C7082 /* MemoData+CoreDataProperties.swift */; };
@@ -30,7 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		76027F6B2ADE3D6E00C6F9EC /* ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
+		76027F6B2ADE3D6E00C6F9EC /* CategoryTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTheme.swift; sourceTree = "<group>"; };
 		76027F712ADE47F500C6F9EC /* IconTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconTheme.swift; sourceTree = "<group>"; };
 		764ACABB2ACD20CF002C7082 /* MemoData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemoData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		764ACABC2ACD20CF002C7082 /* MemoData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemoData+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -68,7 +68,7 @@
 		76027F682ADE3CA800C6F9EC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				76027F6B2ADE3D6E00C6F9EC /* ColorTheme.swift */,
+				76027F6B2ADE3D6E00C6F9EC /* CategoryTheme.swift */,
 				76027F712ADE47F500C6F9EC /* IconTheme.swift */,
 			);
 			path = Extensions;
@@ -274,7 +274,7 @@
 				76E856CB2ACBF6D1009433D6 /* AppDelegate.swift in Sources */,
 				76E856CD2ACBF6D1009433D6 /* SceneDelegate.swift in Sources */,
 				767631242AD3D348009C148D /* TodayCell.swift in Sources */,
-				76027F6C2ADE3D6E00C6F9EC /* ColorTheme.swift in Sources */,
+				76027F6C2ADE3D6E00C6F9EC /* CategoryTheme.swift in Sources */,
 				76E6E1A22AD51815004EB37F /* CategoryTransformer.swift in Sources */,
 				7681C2902ACFF529009E8DE6 /* CategoryDetailCell.swift in Sources */,
 			);
@@ -437,7 +437,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.iyeah.ThinkingAbout;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iyeah.ThinkAbout;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -469,7 +469,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.iyeah.ThinkingAbout;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iyeah.ThinkAbout;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

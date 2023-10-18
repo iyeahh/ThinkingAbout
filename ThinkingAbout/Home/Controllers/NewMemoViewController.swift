@@ -23,7 +23,7 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
     var indexOfMemo: Int = 0
 
-    private var currentCategory: Category = Category(type: "업무", color: .theme.work, image: UIImage(systemName: "text.book.closed"))
+    private var currentCategory: Category = Category(type: "업무", color: .categoryTheme.work, image: UIImage(systemName: "text.book.closed"))
 
     var categoryPickerValue: String = "업무"
 
@@ -86,14 +86,15 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     private func setupCategoryPicker() {
         categoryPicker.dataSource = self
         categoryPicker.delegate = self
-        categoryPicker.backgroundColor = #colorLiteral(red: 0.97647053, green: 0.97647053, blue: 0.97647053, alpha: 1)
+        categoryPicker.backgroundColor = .uITheme.sub
+
         categoryPicker.clipsToBounds = true
         categoryPicker.layer.cornerRadius = 10
     }
 
     private func setupDatePicker() {
         datePicker.datePickerMode = .date
-        datePicker.backgroundColor = #colorLiteral(red: 0.97647053, green: 0.97647053, blue: 0.97647053, alpha: 1)
+        datePicker.backgroundColor = .uITheme.sub
         datePicker.clipsToBounds = true
         datePicker.layer.cornerRadius = 10
 
@@ -128,7 +129,7 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             finishButton.backgroundColor = UIColor.lightGray
         } else {
             finishButton.isEnabled = true
-            finishButton.backgroundColor = #colorLiteral(red: 0.2988972366, green: 0.4551405311, blue: 0.8419892788, alpha: 1)
+            finishButton.backgroundColor = .uITheme.main
         }
     }
 

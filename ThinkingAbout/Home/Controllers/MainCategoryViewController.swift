@@ -32,9 +32,9 @@ final class MainCategoryViewController: UIViewController {
     }
 
     private func setupAddButton() {
-        addButton.backgroundColor = #colorLiteral(red: 0.3382760584, green: 0.5265126824, blue: 1, alpha: 1)
+        addButton.backgroundColor = .uITheme.main
         addButton.setTitle("", for: .normal)
-        addButton.tintColor = #colorLiteral(red: 0.97647053, green: 0.97647053, blue: 0.97647053, alpha: 1)
+        addButton.tintColor = .uITheme.sub
         addButton.clipsToBounds = true
         addButton.layer.cornerRadius = addButton.frame.width / 2
     }
@@ -42,7 +42,7 @@ final class MainCategoryViewController: UIViewController {
     private func setupCollecionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = #colorLiteral(red: 0.97647053, green: 0.97647053, blue: 0.97647053, alpha: 1)
+        collectionView.backgroundColor = .uITheme.sub
 
         let inset: CGFloat = 20.0
         collectionView.contentInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)

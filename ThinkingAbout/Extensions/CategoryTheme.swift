@@ -9,10 +9,11 @@ import UIKit
 
 // MARK: - 컬러 테마
 extension UIColor {
-    static let theme = ColorTheme()
+    static let categoryTheme = CategoryTheme()
+    static let uITheme = UIColorTheme()
 }
 
-struct ColorTheme {
+struct CategoryTheme {
     let all: UIColor = #colorLiteral(red: 0.2988972366, green: 0.4551405311, blue: 0.8419892788, alpha: 1)
     let work: UIColor = #colorLiteral(red: 0.9921761155, green: 0.7328807712, blue: 0.4789910913, alpha: 1)
     let music: UIColor = #colorLiteral(red: 0.9771121144, green: 0.6577736735, blue: 0.6004146934, alpha: 1)
@@ -21,4 +22,9 @@ struct ColorTheme {
     let stuff: UIColor = #colorLiteral(red: 0.8769599795, green: 0.5063646436, blue: 0.4531673789, alpha: 1)
     let hobby: UIColor = #colorLiteral(red: 0.7281604409, green: 0.5113939643, blue: 0.8102740645, alpha: 1)
     let shopping: UIColor = #colorLiteral(red: 0.2690466344, green: 0.7030950189, blue: 0.7497351766, alpha: 1)
+}
+
+struct UIColorTheme {
+    let main: UIColor = #colorLiteral(red: 0.3382760584, green: 0.5265126824, blue: 1, alpha: 1)
+    let sub: UIColor = #colorLiteral(red: 0.97647053, green: 0.97647053, blue: 0.97647053, alpha: 1)
 }
