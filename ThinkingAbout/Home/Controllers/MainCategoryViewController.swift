@@ -34,7 +34,7 @@ final class MainCategoryViewController: UIViewController {
     private func setupAddButton() {
         addButton.backgroundColor = .uITheme.main
         addButton.setTitle("", for: .normal)
-        addButton.tintColor = .uITheme.sub
+        addButton.tintColor = .white
         addButton.clipsToBounds = true
         addButton.layer.cornerRadius = addButton.frame.width / 2
     }

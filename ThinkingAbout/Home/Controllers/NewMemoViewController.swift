@@ -8,7 +8,7 @@
 import UIKit
 
 class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-    
+
     // MARK: - 버튼의 위치를 동적으로 변경하기 위한 제약 연결
     @IBOutlet weak var buttonBottomConstraint: NSLayoutConstraint!
 
@@ -184,7 +184,12 @@ extension NewMemoViewController: UITextViewDelegate {
         checkingButtonValid()
         if textView.text == "텍스트를 여기에 입력하세요." {
             textView.text = nil
-            textView.textColor = .black
+            let traitCollection = UITraitCollection()
+            if traitCollection.userInterfaceStyle == .light {
+                textView.textColor = .black
+            } else {
+                textView.textColor = .white
+            }
         }
     }
 

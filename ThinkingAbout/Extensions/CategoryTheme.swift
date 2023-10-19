@@ -11,6 +11,7 @@ import UIKit
 extension UIColor {
     static let categoryTheme = CategoryTheme()
     static let uITheme = UIColorTheme()
+    static let darkmode = UIColor(named: "darkmodeColorAsset")!
 }
 
 struct CategoryTheme {
@@ -26,5 +27,5 @@ struct CategoryTheme {
 
 struct UIColorTheme {
     let main: UIColor = #colorLiteral(red: 0.3382760584, green: 0.5265126824, blue: 1, alpha: 1)
-    let sub: UIColor = #colorLiteral(red: 0.97647053, green: 0.97647053, blue: 0.97647053, alpha: 1)
+    let sub: UIColor = .darkmode
 }
