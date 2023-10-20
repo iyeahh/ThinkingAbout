@@ -1,0 +1,39 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "6JU-cE-ds0"; */
+"6JU-cE-ds0.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "6eE-Vq-vnD"; */
+"6eE-Vq-vnD.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Fdn-H8-jO5"; */
+"Fdn-H8-jO5.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "HCD-sX-J9Z"; */
+"HCD-sX-J9Z.text" = "Label";
+
+/* Class = "UITabBarItem"; title = "Home"; ObjectID = "PZO-8R-9mj"; */
+"PZO-8R-9mj.title" = "Home";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "R6Y-vC-cHI"; */
+"R6Y-vC-cHI.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Think About 🧐"; ObjectID = "h0p-7L-Jmz"; */
+"h0p-7L-Jmz.title" = "Think About 🧐";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "hzn-qu-lEE"; */
+"hzn-qu-lEE.text" = "Label";
+
+/* Class = "UITabBarItem"; title = "Today"; ObjectID = "p4p-LS-tJI"; */
+"p4p-LS-tJI.title" = "Today";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "rCM-CE-803"; */
+"rCM-CE-803.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "작성 완료"; ObjectID = "sjS-Kw-UD5"; */
+"sjS-Kw-UD5.normalTitle" = "작성 완료";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "yEc-m4-Cox"; */
+"yEc-m4-Cox.text" = "Label";
+
+/* Class = "UILabel"; text = "What are you thinking about?"; ObjectID = "ymW-17-qii"; */
+"ymW-17-qii.text" = "What are you thinking about?";

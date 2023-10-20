@@ -184,14 +184,17 @@ extension NewMemoViewController: UITextViewDelegate {
         checkingButtonValid()
         if textView.text == "텍스트를 여기에 입력하세요." {
             textView.text = nil
-            let traitCollection = UITraitCollection()
-            if traitCollection.userInterfaceStyle == .light {
-                textView.textColor = .black
-            } else {
-                textView.textColor = .white
+
+            textView.textColor = UIColor { (traitCollection: UITraitCollection) -> UIColor in
+                if traitCollection.userInterfaceStyle == .dark {
+                    return UIColor.white
+                } else {
+                    return UIColor.black
+                }
             }
         }
     }
+
 
     func textViewDidEndEditing(_ textView: UITextView) {
         checkingButtonValid()
