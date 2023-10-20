@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Think About 🧐-->
+        <!--Think About-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MainCategoryViewController" customModule="ThinkingAbout" customModuleProvider="target" sceneMemberID="viewController">
@@ -131,7 +131,7 @@
                             <constraint firstItem="6eE-Vq-vnD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" symbolic="YES" id="iTk-kv-sk8"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Think About 🧐" id="h0p-7L-Jmz"/>
+                    <navigationItem key="navigationItem" title="Think About" id="h0p-7L-Jmz"/>
                     <connections>
                         <outlet property="addButton" destination="6eE-Vq-vnD" id="B9h-hp-Tgp"/>
                         <outlet property="collectionView" destination="uQb-hq-UsN" id="keD-NS-a9I"/>
