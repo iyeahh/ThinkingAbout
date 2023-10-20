@@ -38,7 +38,7 @@ final class MemoDataManager {
     private func fetchMemoList() {
         let request = NSFetchRequest<NSManagedObject>(entityName: self.modelName)
         let dateOrder = NSSortDescriptor(key: "date", ascending: false)
-        request.sortDescriptors = [dateOrder]
+        request.sortDescriptors = [dateOrder].reversed()
 
         do {
             guard let fetchedMemoList = try mainContext.fetch(request) as? [MemoData] else {
