@@ -74,7 +74,7 @@ final class MemoDataManager {
     }
 
     func updateMemo(_ memo: MemoData?, at index: Int) {
-        guard let updatingMemo = memo else {
+        guard let _ = memo else {
             print("업데이트 실패")
             return
         }
