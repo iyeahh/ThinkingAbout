@@ -66,12 +66,14 @@ extension CategoryViewController: UITableViewDataSource {
             cell.selectionStyle = .none
 
             if navibarTitle == "모아보기" {
-                cell.memoData = memoDataManager.memoList[indexPath.row]
+                let sortedArray = memoDataManager.memoList.sorted { $0.date! > $1.date! }
+                cell.memoData = sortedArray[indexPath.row]
             } else {
                 let currentCategoryArray = memoDataManager.memoList.filter { data in
                     data.category?.type == navibarTitle
                 }
-                cell.memoData = currentCategoryArray[indexPath.row]
+                let sortedArray = currentCategoryArray.sorted { $0.date! > $1.date! }
+                cell.memoData = sortedArray[indexPath.row]
             }
             return cell
         }
