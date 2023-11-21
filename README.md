@@ -1,8 +1,19 @@
-# 🧐 띵커바웃 (Think about)
+# 🗓 띵커바웃 (Think about) README
 
-##### 구현 기간: 2023년 10월 3일 → 2023년 10월 23일
+##### 2023년 10월 3일 → 2023년 10월 23일
 
-## 트러블 슈팅
+## 🗒️ 카테고리 별로 나누어 저장하는 메모앱
+* 여러 카테고리로 저장하고 찾아볼 수 있도록 함
+
+## 🤓 기술스택
+* UIKit
+* UI -> Storyboard
+* CoreData
+* UICollecionView
+* UITableView
+
+## ⚽️ 트러블 슈팅
+
 ### 👿 트러블
 * CoreData에서 지원하지 않는 `Category` 타입 저장하기
 
@@ -29,5 +40,4 @@
 
 ### 😈 해결 방법
 * `Assets`에서 `Color Set`에 라이트모드와 다크모드에 색상 지정
-
 
