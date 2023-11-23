@@ -33,16 +33,7 @@ final class MemoDataManager {
     private let modelName: String = "MemoData"
 
     // MARK: - 메모 데이터 배열
-    var memoList: [MemoData] = [] {
-        didSet {
-            memoList.sort {
-                if let date1 = $0.date, let date2 = $1.date {
-                    return date1 > date2
-                }
-                return false
-            }
-        }
-    }
+    var memoList: [MemoData] = []
 
     private func fetchMemoList() {
         let request = NSFetchRequest<NSManagedObject>(entityName: self.modelName)
@@ -89,12 +80,6 @@ final class MemoDataManager {
         }
         
         saveContext()
-        memoList.sort {
-            if let date1 = $0.date, let date2 = $1.date {
-                return date1 > date2
-            }
-            return false
-        }
     }
 
     func saveContext() {
@@ -102,6 +87,7 @@ final class MemoDataManager {
         if context.hasChanges {
             do {
                 try context.save()
+                fetchMemoList()
             } catch {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
