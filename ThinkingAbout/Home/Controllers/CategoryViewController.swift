@@ -66,14 +66,12 @@ extension CategoryViewController: UITableViewDataSource {
             cell.selectionStyle = .none
 
             if navibarTitle == "모아보기" {
-                let sortedArray = memoDataManager.memoList.sorted { $0.date! > $1.date! }
-                cell.memoData = sortedArray[indexPath.row]
+                cell.memoData = memoDataManager.memoList[indexPath.row]
             } else {
                 let currentCategoryArray = memoDataManager.memoList.filter { data in
                     data.category?.type == navibarTitle
                 }
-                let sortedArray = currentCategoryArray.sorted { $0.date! > $1.date! }
-                cell.memoData = sortedArray[indexPath.row]
+                cell.memoData = currentCategoryArray[indexPath.row]
             }
             return cell
         }
@@ -85,8 +83,17 @@ extension CategoryViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let newMemoVC = storyboard?.instantiateViewController(withIdentifier: "toNewMemoVC") as? NewMemoViewController {
-            newMemoVC.categoryPickerValue = navibarTitle
-            newMemoVC.memoData = memoDataManager.memoList[indexPath.row]
+            if navibarTitle == "모아보기" {
+                newMemoVC.memoData = memoDataManager.memoList[indexPath.row]
+            } else {
+                let currentCategoryArray = memoDataManager.memoList.filter { data in
+                    data.category?.type == navibarTitle
+                }
+                newMemoVC.memoData = currentCategoryArray[indexPath.row]
+            }
+            if let category = newMemoVC.memoData?.category {
+                newMemoVC.currentCategory = category
+            }
             self.navigationController?.pushViewController(newMemoVC, animated: true)
         }
     }

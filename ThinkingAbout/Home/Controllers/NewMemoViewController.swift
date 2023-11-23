@@ -23,9 +23,7 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
     var indexOfMemo: Int = 0
 
-    private var currentCategory: Category = Category(type: "업무", color: .categoryTheme.work, image: UIImage(systemName: "text.book.closed"))
-
-    var categoryPickerValue: String = "업무"
+    var currentCategory: Category = Category(type: "업무", color: .categoryTheme.work, image: UIImage(systemName: "text.book.closed"))
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,7 +98,7 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
         guard let value = Category.mainCategoryArray.map({ category in
             category.type
-        }).firstIndex(of: categoryPickerValue) else {
+        }).firstIndex(of: currentCategory.type) else {
             return
         }
         categoryPicker.selectRow(value - 1, inComponent: 0, animated: false)

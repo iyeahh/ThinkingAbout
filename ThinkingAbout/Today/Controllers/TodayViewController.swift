@@ -86,8 +86,13 @@ extension TodayViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let newMemoVC = storyboard?.instantiateViewController(withIdentifier: "toNewMemoVC") as? NewMemoViewController {
-            newMemoVC.categoryPickerValue = category
-            newMemoVC.memoData = memoDataManager.memoList[indexPath.row]
+            let todayDataArray = memoDataManager.memoList.filter { data in
+                data.dateString == todayDateString
+            }
+            newMemoVC.memoData = todayDataArray[indexPath.row]
+            if let category = newMemoVC.memoData?.category {
+                newMemoVC.currentCategory = category
+            }
             self.navigationController?.pushViewController(newMemoVC, animated: true)
         }
     }
