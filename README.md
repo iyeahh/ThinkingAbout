@@ -180,3 +180,14 @@
             }
     }
     ```
+---
+## ✅ 1.1 업데이트
+- **버그 수정** 
+[b201ba4](https://github.com/iyeahh/ThinkingAbout/commit/b201ba45df7e9917010459a0f3051ec01801f31e)
+    - 카테고리에서 수정하는 화면 진입 시 날짜 랜덤으로 보이는 것 수정
+    - 모아보기에서 수정하는 화면 진입 시 카테고리 랜덤으로 보이는 것 수정
+    - 미리보기 메모와 본문의 메모가 다른 것 수정
+    - 메모 수정 시 카테고리 지정하지 않으면 업무로 지정되는 것 수정
+
+- **delete 안되는 것 수정** 
+[c16406b](https://github.com/iyeahh/ThinkingAbout/commit/c16406bff811f4a6a470aa92bc6d11cb2f050a6d)
