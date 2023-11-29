@@ -73,9 +73,9 @@ extension CategoryViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            if navibarTitle == "모아보기" {
-                viewModel.deleteCell(index: indexPath.row)
-            }
+
+            viewModel.deleteCell(index: indexPath.row)
+
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.reloadData()
         }

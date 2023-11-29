@@ -52,10 +52,7 @@ class CategoryViewModel {
             let deleteCell = memoDataManager.memoList[index]
             memoDataManager.deleteMemo(deleteCell, at: index)
         } else {
-            let currentCategoryArray = memoDataManager.memoList.filter { data in
-                data.category?.type == navibarTitle
-            }
-            memoDataManager.deleteMemo(currentCategoryArray[index], at: index)
+            memoDataManager.deleteMemo(getCategoryMemo()[index], at: index)
         }
     }
 }
