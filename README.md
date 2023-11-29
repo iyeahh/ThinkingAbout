@@ -191,3 +191,23 @@
 
 - **delete 안되는 것 수정** 
 [c16406b](https://github.com/iyeahh/ThinkingAbout/commit/c16406bff811f4a6a470aa92bc6d11cb2f050a6d)
+
+---
+## ✅ MVC -> MVVM 변경
+### 👿 고민한 부분
+**ViewModel이 어느 정도까지 일을 해야 할까?**
+
+### 😈 결론
+💡 ViewController를 최대한 멍청하게 만들자
+* ViewController는 뷰를 그리는 동작만 수행하고
+* 모든 로직은 ViewModel에서 이루어지도록 함
+
+---
+### 👿 고민한 부분
+**ViewModel을 하나만 뒀더니 또다시 비대해지는데 어떻게 나눌까?**
+
+### 😈 결론
+💡 MemoDataManager가 MemoData를 가지고 있기 때문에 ViewModel을 하나만 둬도 괜찮다고 생각했으나, 모든 Cell과 ViewController를 대응하다 보니 점점 비대해짐
+
+* 각각의 ViewModel을 따로 만들고 `Cell들`과 `NewMemoViewController`는 묶어 하나의 MemoViewModel을 생성함 <img width="242" alt="스크린샷 2023-11-29 오후 5 19 00" src="https://github.com/iyeahh/ThinkingAbout/assets/120009678/f4891fa5-f994-4a1a-8b7e-8fa03e57116c">
+
