@@ -17,9 +17,7 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var categoryPicker: UIPickerView!
 
-    private let memoDataManager = MemoDataManager.shared
-
-    var memoData: MemoData?
+    let viewModel = MemoViewModel()
 
     var indexOfMemo: Int = 0
 
@@ -105,7 +103,7 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
 
     private func configureUI() {
-        if let memoData = self.memoData {
+        if let memoData = viewModel.memoData {
             print(memoData)
             self.title = "메모 수정"
 
@@ -136,22 +134,18 @@ class NewMemoViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
 
     @IBAction func finishButtonTapped(_ sender: UIButton) {
-        if let memoData = self.memoData {
+        if let memoData = viewModel.memoData {
 
             memoData.memoText = memoTextView.text
             memoData.date = datePicker.date
             memoData.category = currentCategory
 
-            memoDataManager.updateMemo(memoData, at: indexOfMemo)
-            self.navigationController?.popViewController(animated: true)
-
+            viewModel.update(memo: memoData, index: indexOfMemo, vc: self)
         } else {
             let memoText = memoTextView.text
             let date = datePicker.date
 
-            memoDataManager.createMemo(text: memoText, date: date, category: currentCategory)
-            self.navigationController?.popViewController(animated: true)
-
+            viewModel.createMemo(text: memoText, date: date, category: currentCategory, vc: self)
         }
     }
 
@@ -192,7 +186,6 @@ extension NewMemoViewController: UITextViewDelegate {
             }
         }
     }
-
 
     func textViewDidEndEditing(_ textView: UITextView) {
         checkingButtonValid()

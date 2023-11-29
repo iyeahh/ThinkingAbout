@@ -11,9 +11,7 @@ class TodayViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    let memoDataManager = MemoDataManager.shared
-
-    var memoData: MemoData?
+    let viewModel = TodayViewModel()
 
     var category: String = "업무"
 
@@ -52,23 +50,17 @@ class TodayViewController: UIViewController {
 extension TodayViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        let todayDataArray = memoDataManager.memoList.filter { data in
-            data.dateString == todayDateString
-        }
-
-        return todayDataArray.count
+        viewModel.todayDateString = todayDateString
+        return viewModel.getTodayMemo().count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "TodayCell", for: indexPath) as? TodayCell {
 
-            let todayDataArray = memoDataManager.memoList.filter { data in
-                data.dateString == todayDateString
-            }
+            let memoVM = viewModel.memoViewModelAt(index: indexPath.row)
+            cell.viewModel = memoVM
 
-            cell.memoData = todayDataArray[indexPath.row]
-
-            if let categoryType = cell.memoData?.category?.type {
+            if let categoryType = cell.viewModel.memoData?.category?.type {
                 category = categoryType
             }
             cell.selectionStyle = .none
@@ -85,24 +77,12 @@ extension TodayViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let newMemoVC = storyboard?.instantiateViewController(withIdentifier: "toNewMemoVC") as? NewMemoViewController {
-            let todayDataArray = memoDataManager.memoList.filter { data in
-                data.dateString == todayDateString
-            }
-            newMemoVC.memoData = todayDataArray[indexPath.row]
-            if let category = newMemoVC.memoData?.category {
-                newMemoVC.currentCategory = category
-            }
-            self.navigationController?.pushViewController(newMemoVC, animated: true)
-        }
+        viewModel.goNewMemoVC(storyboard: self.storyboard, fromCurrentVC: self, index: indexPath.row)
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let todayDataArray = memoDataManager.memoList.filter { data in
-                data.dateString == todayDateString
-            }
-            memoDataManager.deleteMemo(todayDataArray[indexPath.row], at: indexPath.row)
+            viewModel.deleteCell(index: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.reloadData()
         }

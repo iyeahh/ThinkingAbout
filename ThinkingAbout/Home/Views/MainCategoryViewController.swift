@@ -12,7 +12,7 @@ final class MainCategoryViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var addButton: UIButton!
 
-    private let memoDataManager = MemoDataManager.shared
+    let viewModel = MainCategoryViewModel()
 
     private let flowLayout = UICollectionViewFlowLayout()
 
@@ -62,9 +62,7 @@ final class MainCategoryViewController: UIViewController {
     }
 
     @IBAction private func addButtonTapped(_ sender: UIButton) {
-        if let newMemoVC = storyboard?.instantiateViewController(withIdentifier: "toNewMemoVC") as? NewMemoViewController {
-            self.navigationController?.pushViewController(newMemoVC, animated: true)
-        }
+        viewModel.handleAddButtonTapped(storyboard: self.storyboard, fromCurrentVC: self)
     }
 }
 
@@ -81,9 +79,9 @@ extension MainCategoryViewController: UICollectionViewDataSource {
             cell.categoryLabel.text = category.type
 
             if cell.categoryLabel.text == "모아보기" {
-                cell.numberOfTaskLabel.text = "\(memoDataManager.memoList.count)개의 생각"
+                cell.numberOfTaskLabel.text = "\(viewModel.memoList.count)개의 생각"
             } else {
-                let currentCategory = memoDataManager.memoList.filter { data in
+                let currentCategory = viewModel.memoList.filter { data in
                     data.category?.type == cell.categoryLabel.text
                 }
                 cell.numberOfTaskLabel.text = "\(currentCategory.count)개의 생각"
@@ -98,9 +96,6 @@ extension MainCategoryViewController: UICollectionViewDataSource {
 
 extension MainCategoryViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let categoryVC = storyboard?.instantiateViewController(withIdentifier: "toCategoryVC") as? CategoryViewController {
-            categoryVC.navibarTitle = Category.mainCategoryArray[indexPath.row].type ?? ""
-            self.navigationController?.pushViewController(categoryVC, animated: true)
-        }
+        viewModel.goCategoryVC(storyboard: self.storyboard, fromCurrentVC: self, index: indexPath.row)
     }
 }

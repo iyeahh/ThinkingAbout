@@ -13,7 +13,7 @@ class TodayCell: UITableViewCell {
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var memoLabel: UILabel!
 
-    var memoData: MemoData? {
+    var viewModel: MemoViewModel! {
         didSet {
             setupUIwithData()
         }
@@ -40,8 +40,8 @@ class TodayCell: UITableViewCell {
     }
 
     func setupUIwithData() {
-        categoryView.backgroundColor = memoData?.category?.color
-        categoryLabel.text = memoData?.category?.type
-        memoLabel.text = memoData?.memoText
+        categoryView.backgroundColor = viewModel.categoryColor
+        categoryLabel.text = viewModel.categoryType
+        memoLabel.text = viewModel.memoText
     }
 }

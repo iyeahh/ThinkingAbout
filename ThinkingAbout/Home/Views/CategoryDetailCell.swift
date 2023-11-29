@@ -16,7 +16,7 @@ class CategoryDetailCell: UITableViewCell {
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var memoLabel: UILabel!
 
-    var memoData: MemoData? {
+    var viewModel: MemoViewModel! {
         didSet {
             setupUIwithData()
         }
@@ -61,9 +61,9 @@ class CategoryDetailCell: UITableViewCell {
     }
 
     private func setupUIwithData() {
-        dateLabel.text = memoData?.dateString
-        categoryView.backgroundColor = memoData?.category?.color
-        categoryLabel.text = memoData?.category?.type
-        memoLabel.text = memoData?.memoText
+        dateLabel.text = viewModel.dateString
+        categoryView.backgroundColor = viewModel.categoryColor
+        categoryLabel.text = viewModel.categoryType
+        memoLabel.text = viewModel.memoText
     }
 }
